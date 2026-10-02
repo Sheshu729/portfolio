@@ -108,7 +108,13 @@ const normalizedAssetBasePath = assetBasePath === '/'
 	: `/${assetBasePath.replace(/^\/+|\/+$/g, '')}`;
 const publicAsset = (assetPath: string) => `${normalizedAssetBasePath}/${assetPath.replace(/^\/+/, '')}`;
 const siteOrigin = new URL(publicSiteUrl).origin;
-const canonicalPath = `${normalizedBasePath}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
+// Why: with Astro `base` (e.g. /portfolio on project Pages), Astro.url.pathname
+// already includes the base, so prepending it again would double it
+// (/portfolio/portfolio/). Only prepend when missing.
+const rawPathname = Astro.url.pathname === '/' ? '/' : Astro.url.pathname;
+const canonicalPath = normalizedBasePath && rawPathname !== '/' && rawPathname.startsWith(`${normalizedBasePath}/`)
+	? rawPathname
+	: `${normalizedBasePath}${rawPathname}`;
 const canonicalURL = new URL(canonicalPath, siteOrigin).href;
 
 // Why: og:image must be absolute URL (protocol + host) because Facebook,

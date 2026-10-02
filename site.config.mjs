@@ -2,7 +2,7 @@
 // Edit THIS file when changing domain.
 // Environment domain used during build.
 // TODO: replace with your real deploy URL (used for canonical + sitemap).
-export const SITE_URL = 'https://sheshu729.github.io/portfolio/';
+export const SITE_URL = 'https://sheshu729.github.io';
 export const ACTIVE_TEMPLATE = 'nova';
 
 // Personal portfolio, English only. SITE_LOCALE picks the single active locale;
