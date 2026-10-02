@@ -54,14 +54,21 @@ function collectFiles(dir) {
 function collectReferencedAssets() {
   const referenced = new Set();
   // We support absolute and relative paths, and we cut off the query string before comparison.
-  const assetUrl = /(?:^|["'`()=\s])((?:\/)?(?:assets|images|images-webp|videos|fonts)\/[^"'`()\s<>?#,]+)/g;
+  // Why: with a Pages project base (PUBLIC_BASE_PATH=portfolio), part of dist
+  // already uses prefixed URLs (/portfolio/fonts/...) at prune time (Astro base
+  // output + publicAsset()). The optional extra segment + base strip below keep
+  // those references matching dist-relative paths; otherwise prune deletes live
+  // files (e.g. all of dist/fonts/ -> blank Phosphor arrows).
+  const basePrefix = (process.env.PUBLIC_BASE_PATH || '').trim().replace(/^\/+|\/+$/g, '').toLowerCase();
+  const assetUrl = /(?:^|["'`()=\s])((?:\/)?(?:[A-Za-z0-9-]+\/)?(?:assets|images|images-webp|videos|fonts)\/[^"'`()\s<>?#,]+)/g;
 
   for (const file of collectFiles(dist)) {
     if (!SCANNABLE_EXTENSIONS.has(path.extname(file).toLowerCase())) continue;
 
     const content = fs.readFileSync(file, 'utf8');
     for (const match of content.matchAll(assetUrl)) {
-      const reference = match[1].replace(/^\/+/, '').replace(/\\/g, '/').toLowerCase();
+      let reference = match[1].replace(/^\/+/, '').replace(/\\/g, '/').toLowerCase();
+      if (basePrefix && reference.startsWith(`${basePrefix}/`)) reference = reference.slice(basePrefix.length + 1);
       if (reference) referenced.add(reference);
     }
   }
