@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Hi, I'm Sheshadri V",
+  "heading": "ECE Engineer building",
+  "headingAccent": "at the intersection of hardware and software",
+  "description": "I build web applications, digital interfaces, and electronics projects, combining my engineering foundation with software development to turn ideas into practical solutions. Alongside technology, I'm also building GoFarmWork, a startup focused on connecting farmers and agricultural workers through a digital platform.",
+  "primaryCTA": { "label": "View my work", "href": "#projects" },
+  "secondaryCTA": { "label": "GitHub", "href": "https://github.com/Sheshu729" },
+  "trustedBy": "Languages I work with",
+  "trustItems": ["HTML", "CSS", "JavaScript", "TypeScript", "Python"],
+  "image": "/assets/images/sheshadri-v-portrait.webp",
+  "imageAlt": "Sheshadri V standing in a green field",
+  "stats": [
+    { "value": "3", "label": "Projects built" },
+    { "value": "2", "label": "Certificates earned" },
+    { "value": "1", "label": "Startup founded" },
+    { "value": "5", "label": "Languages spoken" }
+  ]
+}

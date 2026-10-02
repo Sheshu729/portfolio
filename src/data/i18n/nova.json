@@ -1,0 +1,170 @@
+{
+  "pl": {
+    "page": {
+      "title": "Sheshadri V | Web & App Developer, ECE Engineer",
+      "description": "Portfolio of Sheshadri V, an electronics and communication engineer building websites, UI/UX and IoT projects. CEO of GoFarmWork.",
+      "heading": "Sheshadri V, web and app developer"
+    },
+    "demoBanner": {
+      "label": "This template was designed and built by WebScale.",
+      "downloadLabel": "Download template",
+      "downloadHref": "https://github.com/themewagon/nova-astro",
+      "customizeLabel": "Request customization",
+      "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
+    },
+    "navigation": {
+      "menu": [
+        {
+          "label": "About",
+          "href": "#about"
+        },
+        {
+          "label": "Skills",
+          "href": "#services"
+        },
+        {
+          "label": "Projects",
+          "href": "#projects"
+        },
+        {
+          "label": "Education",
+          "href": "#education"
+        }
+      ],
+      "cta": {
+        "label": "Get in touch",
+        "hoverLabel": "Let's talk",
+        "href": "#contact"
+      },
+      "aria": {
+        "menuOpen": "Open navigation menu",
+        "menuClose": "Close menu",
+        "menuExpand": "Expand submenu",
+        "navMain": "Main navigation",
+        "drawer": "Navigation menu"
+      },
+      "languageLabel": "Choose language"
+    },
+    "sections": {},
+    "footer": {
+      "eyebrow": "Open to opportunities",
+      "heading": "Get in touch",
+      "description": "Looking for web and app development work, freelance projects or collaborations. Email me, call me or find me on GitHub.",
+      "primaryLabel": "Email me",
+      "primaryHref": "mailto:sheshadriv7700@gmail.com",
+      "secondaryLabel": "LinkedIn",
+      "secondaryHref": "https://linkedin.com/in/sheshadri-v-94bb50320",
+      "legalLinks": [],
+      "footerLinks": [
+        {
+          "label": "About",
+          "href": "#about"
+        },
+        {
+          "label": "Skills",
+          "href": "#services"
+        },
+        {
+          "label": "Projects",
+          "href": "#projects"
+        },
+        {
+          "label": "Education",
+          "href": "#education"
+        }
+      ],
+      "ariaLegal": "Legal documents",
+      "ariaNavigation": "Footer navigation",
+      "copyright": "© 2026 Sheshadri V",
+      "attributionPrefix": "GitHub: ",
+      "attributionLinkLabel": "Sheshu729",
+      "attributionLinkHref": "https://github.com/Sheshu729",
+      "ariaContact": "Contact details",
+      "ariaSocial": "Social profiles"
+    }
+  },
+  "en": {
+    "page": {
+      "title": "Sheshadri V | Web & App Developer, ECE Engineer",
+      "description": "Portfolio of Sheshadri V, an electronics and communication engineer building websites, UI/UX and IoT projects. CEO of GoFarmWork.",
+      "heading": "Sheshadri V, web and app developer"
+    },
+    "demoBanner": {
+      "label": "This template was designed and built by WebScale.",
+      "downloadLabel": "Download template",
+      "downloadHref": "https://github.com/themewagon/nova-astro",
+      "customizeLabel": "Request customization",
+      "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
+    },
+    "navigation": {
+      "menu": [
+        {
+          "label": "About",
+          "href": "#about"
+        },
+        {
+          "label": "Skills",
+          "href": "#services"
+        },
+        {
+          "label": "Projects",
+          "href": "#projects"
+        },
+        {
+          "label": "Education",
+          "href": "#education"
+        }
+      ],
+      "cta": {
+        "label": "Get in touch",
+        "hoverLabel": "Let's talk",
+        "href": "#contact"
+      },
+      "aria": {
+        "menuOpen": "Open navigation menu",
+        "menuClose": "Close menu",
+        "menuExpand": "Expand submenu",
+        "navMain": "Main navigation",
+        "drawer": "Navigation menu"
+      },
+      "languageLabel": "Choose language"
+    },
+    "sections": {},
+    "footer": {
+      "eyebrow": "Open to opportunities",
+      "heading": "Get in touch",
+      "description": "Looking for web and app development work, freelance projects or collaborations. Email me, call me or find me on GitHub.",
+      "primaryLabel": "Email me",
+      "primaryHref": "mailto:sheshadriv7700@gmail.com",
+      "secondaryLabel": "LinkedIn",
+      "secondaryHref": "https://linkedin.com/in/sheshadri-v-94bb50320",
+      "legalLinks": [],
+      "footerLinks": [
+        {
+          "label": "About",
+          "href": "#about"
+        },
+        {
+          "label": "Skills",
+          "href": "#services"
+        },
+        {
+          "label": "Projects",
+          "href": "#projects"
+        },
+        {
+          "label": "Education",
+          "href": "#education"
+        }
+      ],
+      "ariaLegal": "Legal documents",
+      "ariaNavigation": "Footer navigation",
+      "copyright": "© 2026 Sheshadri V",
+      "attributionPrefix": "GitHub: ",
+      "attributionLinkLabel": "Sheshu729",
+      "attributionLinkHref": "https://github.com/Sheshu729",
+      "ariaContact": "Contact details",
+      "ariaSocial": "Social profiles"
+    }
+  }
+}

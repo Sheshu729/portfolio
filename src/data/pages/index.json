@@ -1,0 +1,16 @@
+{
+  "seo": {
+    "title": "Sheshadri V | Web & App Developer, ECE Engineer",
+    "description": "Portfolio of Sheshadri V, an electronics and communication engineer building websites, UI/UX and IoT projects. CEO of GoFarmWork."
+  },
+  "heading": "Sheshadri V, web and app developer",
+  "sections": [
+    { "id": "navbar", "variant": "floating" },
+    { "id": "hero", "variant": "nova" },
+    { "id": "aboutExpert", "variant": "default" },
+    { "id": "novaServices", "variant": "default" },
+    { "id": "portfolio", "variant": "nova" },
+    { "id": "processTimeline", "variant": "default" },
+    { "id": "footer", "variant": "nova" }
+  ]
+}

@@ -1,0 +1,10 @@
+
+> templar-t001-nova@0.0.1 predev
+> node src/scripts/sync-phosphor-css.mjs
+
+phosphor: wygenerowano pełny zestaw 1530 ikon z @phosphor-icons/web
+
+> templar-t001-nova@0.0.1 dev
+> astro dev --host 127.0.0.1 --port 4321
+
+{"message":"Dev server already running at http://localhost:4321 (pid 29692)\n  Stop:   astro dev stop\n  Status: astro dev status\n  Logs:   astro dev logs","label":"SKIP_FORMAT","level":"info"}

@@ -1,0 +1,33 @@
+{
+  "fullName": "Sheshadri V",
+  "name": "Sheshadri V",
+  "branding": {
+    "icon": "ph-star",
+    "font": "Satoshi",
+    "tagline": "ECE engineer building for the web",
+    "logoImage": "",
+    "favicon": "/favicon.svg",
+    "logoSuffix": "Portfolio"
+  },
+  "address": "Bengaluru, Karnataka",
+  "zipCode": "",
+  "city": "Bengaluru",
+  "phone": "+91 9108265635",
+  "email": "sheshadriv7700@gmail.com",
+  "hours": "Mon-Sat: 9:00 AM - 7:00 PM",
+  "nip": "",
+  "krs": "",
+  "regon": "",
+  "siteUrl": "",
+  "description": "Electronics and communication engineer working on web apps, UI/UX and IoT projects.",
+  "smtp": {
+    "smtpHost": "",
+    "smtpPort": 587,
+    "smtpUser": "",
+    "smtpPass": ""
+  },
+  "socials": {
+    "github": "https://github.com/Sheshu729",
+    "linkedin": "https://linkedin.com/in/sheshadri-v-94bb50320"
+  }
+}

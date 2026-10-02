@@ -1,0 +1,78 @@
+{
+  "pl": {
+    "eyebrow": "ABOUT ME",
+    "name": "Sheshadri V",
+    "role": "B.E. Electronics & Communication Engineering",
+    "bio": [
+      "ECE Engineer passionate about building at the intersection of hardware and software.",
+      "Skilled in web development and electronics, with a strong interest in VLSI and emerging technologies.",
+      "I enjoy turning ideas into practical, user-focused digital solutions while continuously learning and improving."
+    ],
+    "image": "/assets/images/workspace-desk.webp",
+    "imageAlt": "Developer desk with a monitor showing code, a lamp and a glowing circuit-board backdrop",
+    "certificationsLabel": "CERTIFICATIONS",
+    "certifications": [
+      "Hackathon INNOVATEX 2025",
+      "Certificate Internship Training Programme in IoT"
+    ],
+    "checks": [
+      "Athletics and fitness, trained on a regular schedule"
+    ],
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Tailwind CSS",
+      "Astro",
+      "React",
+      "Figma",
+      "Arduino"
+    ],
+    "linkedinLabel": "in",
+    "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
+    "githubLabel": "gh",
+    "githubUrl": "https://github.com/Sheshu729",
+    "linkedinName": "LinkedIn",
+    "githubName": "GitHub"
+  },
+  "en": {
+    "eyebrow": "ABOUT ME",
+    "name": "Sheshadri V",
+    "role": "B.E. Electronics & Communication Engineering",
+    "bio": [
+      "ECE Engineer passionate about building at the intersection of hardware and software.",
+      "Skilled in web development and electronics, with a strong interest in VLSI and emerging technologies.",
+      "I enjoy turning ideas into practical, user-focused digital solutions while continuously learning and improving."
+    ],
+    "image": "/assets/images/workspace-desk.webp",
+    "imageAlt": "Developer desk with a monitor showing code, a lamp and a glowing circuit-board backdrop",
+    "certificationsLabel": "CERTIFICATIONS",
+    "certifications": [
+      "Hackathon INNOVATEX 2025",
+      "Certificate Internship Training Programme in IoT"
+    ],
+    "checks": [
+      "Athletics and fitness, trained on a regular schedule"
+    ],
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Tailwind CSS",
+      "Astro",
+      "React",
+      "Figma",
+      "Arduino"
+    ],
+    "linkedinLabel": "in",
+    "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
+    "githubLabel": "gh",
+    "githubUrl": "https://github.com/Sheshu729",
+    "linkedinName": "LinkedIn",
+    "githubName": "GitHub"
+  }
+}

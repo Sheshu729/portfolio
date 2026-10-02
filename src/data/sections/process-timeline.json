@@ -1,0 +1,21 @@
+{
+  "title": "Education",
+  "description": "Academic background in electronics and communication, from secondary school through to engineering.",
+  "items": [
+    {
+      "icon": "scroll",
+      "title": "SSLC - Anekal Public School",
+      "description": "Secondary School Leaving Examination completed at Anekal Public School, Anekal, Karnataka."
+    },
+    {
+      "icon": "pencil",
+      "title": "PUC - Sri Sairam PU College",
+      "description": "Pre-University Course at Sri Sairam PU College, Saileonagar Guddanahalli, Anekal, Karnataka."
+    },
+    {
+      "icon": "medal",
+      "title": "B.E. Electronics and Communication",
+      "description": "Bachelor of Engineering at Aditya College of Engineering and Technology, Bengaluru, Karnataka."
+    }
+  ]
+}

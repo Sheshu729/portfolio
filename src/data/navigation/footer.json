@@ -1,0 +1,51 @@
+{
+  "about": "Portfolio of Sheshadri V, electronics and communication engineer building web and app projects.",
+  "contactTitle": "Contact",
+  "copyrightText": "All rights reserved.",
+  "attribution": {
+    "label": "Find me on GitHub",
+    "href": "https://github.com/Sheshu729",
+    "prefix": "",
+    "linkLabel": "Sheshu729"
+  },
+  "aria": {
+    "quickNav": "Quick links and documents",
+    "legalDocs": "Legal documents"
+  },
+  "promo": {
+    "tagline": "Let's work together",
+    "title": "Have a project in mind?",
+    "description": "Send me a message and I will get back to you with details and timelines.",
+    "ctaLabel": "Get in touch",
+    "ctaHref": "#contact",
+    "imageSrc": "/assets/images/t001-nova/t001-nova-project-laptop.webp",
+    "imageAlt": "Laptop showing a web project"
+  },
+  "columns": [
+    {
+      "title": "Quick Links",
+      "links": [
+        { "label": "About", "href": "#about" },
+        { "label": "Skills", "href": "#services" },
+        { "label": "Projects", "href": "#projects" },
+        { "label": "Education", "href": "#education" }
+      ]
+    },
+    {
+      "title": "Important Links",
+      "links": [
+        { "label": "GitHub", "href": "https://github.com/Sheshu729" },
+        { "label": "Cookies", "href": "/cookies/" }
+      ]
+    }
+  ],
+  "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe to get promotions and news updates.",
+      "placeholder": "Your email address",
+      "consent": "I agree to the terms and privacy policy."
+  },
+  "legal": [
+    { "label": "Cookies", "href": "/cookies/" }
+  ]
+}

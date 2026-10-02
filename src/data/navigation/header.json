@@ -1,0 +1,21 @@
+{
+  "menu": [
+    { "label": "About", "href": "#about" },
+    { "label": "Skills", "href": "#services" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Education", "href": "#education" }
+  ],
+  "cta": {
+    "label": "Get in touch",
+    "href": "#contact",
+    "prefix": "",
+    "hoverLabel": "Let's talk"
+  },
+  "aria": {
+    "menuOpen": "Navigation menu",
+    "menuClose": "Close menu",
+    "menuExpand": "Expand subpages",
+    "navMain": "Main navigation",
+    "drawer": "Navigation menu"
+  }
+}

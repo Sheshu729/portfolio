@@ -1,0 +1,33 @@
+{
+  "title": "Projects",
+  "description": "Three builds that show how I work: sensing hardware, renewable energy, and a two-sided marketplace that connects farmers with labourers.",
+  "linkLabel": "See on GitHub",
+  "linkHref": "https://github.com/Sheshu729",
+  "items": [
+    {
+      "category": "Hardware / Arduino",
+      "title": "Radar System Using Ultrasonic Sensor",
+      "description": "An ultrasonic sensor sweeps the area and plots every detected object on a laptop screen in real time.",
+      "media": "radar",
+      "image": "/assets/images/t001-nova/t001-nova-project-laptop.webp",
+      "alt": "Ultrasonic radar project displayed on a laptop screen"
+    },
+    {
+      "category": "Renewable energy / Arduino",
+      "title": "Auto Rotate Solar Panel System",
+      "description": "A solar panel that turns through the day so it always faces the sun and collects more energy.",
+      "media": "solar",
+      "image": "/assets/images/t001-nova/t001-nova-project-building.webp",
+      "alt": "Solar panels tracking sunlight on a building roof"
+    },
+    {
+      "category": "Startup / Founder",
+      "title": "GoFarmWork - Founder and CEO",
+      "description": "GoFarmWork is a digital platform designed to bridge the gap between farmers and agricultural workers by making work opportunities easier to discover and access. Farmers can post their workforce requirements, while workers can find suitable opportunities and connect with employers based on their needs. The platform focuses on improving workforce accessibility, reducing the difficulty of finding reliable labor, and creating a more organized connection between both sides of the agricultural workforce ecosystem.",
+      "image": "/assets/images/go-farm-work-logo.webp",
+      "alt": "GoFarmWork logo",
+      "fit": "contain",
+      "href": "https://gfwapk.pages.dev"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Skills and services",
+  "description": "What I can build for you, from the first wireframe in Figma to a deployed, responsive site.",
+  "linkLabel": "See my projects",
+  "linkHref": "#projects",
+  "items": [
+    {
+      "number": "01.",
+      "icon": "browser",
+      "title": "Web Development",
+      "description": "Semantic HTML5 and modern CSS, JavaScript with TypeScript on larger codebases. Responsive, accessible pages that stay fast on a phone."
+    },
+    {
+      "number": "02.",
+      "icon": "palette",
+      "title": "UI/UX Design",
+      "description": "Wireframes and component-driven interfaces built in Figma, with layout, spacing and type decisions that survive the handoff to code."
+    },
+    {
+      "number": "03.",
+      "icon": "gear",
+      "title": "IoT and Embedded",
+      "description": "Arduino based sensing and automation: an ultrasonic radar, a sun-tracking solar panel and other sensor projects, backed by Python scripting."
+    },
+    {
+      "number": "04.",
+      "icon": "lightbulb",
+      "title": "AI-Assisted Building",
+      "description": "Practical use of Cursor, Manus and Kombai 2.0 to move from an idea to a working prototype quickly, without giving up code quality."
+    }
+  ]
+}

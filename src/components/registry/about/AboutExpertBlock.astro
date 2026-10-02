@@ -1,0 +1,153 @@
+---
+// Why: AboutExpertBlock pairs the workspace photo with the certification list
+// and skill tags: the bio paragraph was replaced by the photo, certifications
+// sit beside it (client request). Content stays in JSON (SSOT) for pl/en.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import jsonData from "@data/sections/about-expert.json";
+
+interface Props {
+  /** Full section data; when missing, block reads fallback from JSON. */
+  data?: typeof jsonData;
+  /** Content language from JSON: "pl" (default) or "en". */
+  locale?: "pl" | "en";
+  /** Section anchor id (defaults to "about"). */
+  sectionId?: string;
+  /** Section heading tag: 'h2' by default, 'h1' when block is first section without hero (SEO). */
+  headingTag?: string;
+  /** Additional classes for the section (e.g. from PageBuilder). */
+  class?: string;
+}
+
+const {
+  data,
+  locale = "pl",
+  sectionId = "about",
+  headingTag = "h2",
+  class: className = "",
+} = Astro.props as Props;
+
+// Why: "props.data || jsonData[locale]" pattern (as in ServicesMediaCardsBlock),
+// so the block works standalone with section data, and PageBuilder or CMS can
+// override content. When data comes from outside, we select its language
+// variant (pl/en), as JSON does.
+const t = (data ? data[locale] : jsonData[locale]) || jsonData.pl;
+
+const certifications = t.certifications ?? [];
+const checks = t.checks ?? [];
+const tags = t.tags ?? [];
+const bio = t.bio ?? [];
+---
+
+<Section id={sectionId} tone="page" class:list={["border-t border-brand-dark/10", className]}>
+  <Container>
+    {/* Why: single full-width card; photo on the left, certifications and
+        skill tags beside it on the right (the centered bio was dropped). */}
+    <div class="relative overflow-hidden rounded-md border border-brand-dark/10 bg-white shadow-soft">
+      {/* Why: corner decoration (L-shape) from original, visible only on
+          desktop; client outline color replaced with brand-dark at low alpha. */}
+      <div class="lc-line-deco pointer-events-none absolute right-8 top-8 hidden h-24 w-24 lg:block" aria-hidden="true"></div>
+
+      <div class="px-8 py-14 sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+        <div class="mx-auto w-full max-w-5xl">
+          <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">{t.eyebrow}</Text>
+          <Heading tag={headingTag} variant="section-heading-lg" class="mt-5 !font-extrabold">{t.name}</Heading>
+          <Text variant="lead" tag="p" class="mt-2 !text-sm !font-extrabold !text-brand-primary">{t.role}</Text>
+          {bio.length > 0 && (
+            <div class="mt-6 max-w-3xl space-y-3">
+              {bio.map((paragraph) => (
+                <Text tag="p" variant="feature-body-sm" class="!leading-relaxed">{paragraph}</Text>
+              ))}
+            </div>
+          )}
+
+          <div class="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-14">
+            <figure class="overflow-hidden rounded-md border border-brand-dark/10">
+              <SmartImage
+                src={t.image}
+                alt={t.imageAlt}
+                width={1536}
+                height={864}
+                loading="lazy"
+                class="block aspect-[4/3] w-full object-cover object-center"
+              />
+            </figure>
+
+            <div class="flex min-w-0 flex-col gap-8">
+              {certifications.length > 0 && (
+                <div>
+                  <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">{t.certificationsLabel}</Text>
+                  <ul class="mt-4 space-y-3">
+                    {certifications.map((cert) => (
+                      <li class="flex gap-3 rounded-md border border-brand-dark/10 bg-brand-primary/5 px-4 py-3">
+                        <span class="text-brand-accent" aria-hidden="true">✓</span>
+                        <Text tag="span" variant="feature-body-sm" class="!font-bold">{cert}</Text>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {checks.length > 0 && (
+                <ul class="space-y-4">
+                  {checks.map((check) => (
+                    <li class="flex gap-3">
+                      <span class="text-brand-accent" aria-hidden="true">✓</span>
+                      <Text tag="span" variant="feature-body-sm" class="!font-bold">{check}</Text>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {tags.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span class="rounded-sm bg-brand-primary/10 px-3 py-1 text-xs font-bold text-brand-primary">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {(t.linkedinUrl || t.githubUrl) && (
+            <div class="mt-10 flex flex-wrap gap-3 lg:mt-12">
+              {t.linkedinUrl && (
+                <a
+                  href={t.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex min-h-11 items-center rounded-sm bg-brand-dark px-5 py-2.5 text-sm font-bold text-brand-light transition-colors hover:bg-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+                >
+                  {t.linkedinName}
+                </a>
+              )}
+              {t.githubUrl && (
+                <a
+                  href={t.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex min-h-11 items-center rounded-sm border border-brand-dark/25 px-5 py-2.5 text-sm font-bold text-brand-dark transition-colors hover:border-brand-primary hover:text-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+                >
+                  {t.githubName}
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Why: L-shape decoration from original (vertical line with horizontal
+     curl), client outline color replaced with brand-dark at low alpha. */
+  .lc-line-deco {
+    background:
+      linear-gradient(color-mix(in oklab, var(--color-brand-dark) 18%, transparent), color-mix(in oklab, var(--color-brand-dark) 18%, transparent)) left 18px top 0 / 1px 54px no-repeat,
+      linear-gradient(color-mix(in oklab, var(--color-brand-dark) 18%, transparent), color-mix(in oklab, var(--color-brand-dark) 18%, transparent)) left 18px top 54px / 62px 1px no-repeat;
+  }
+</style>
