@@ -7,14 +7,22 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
+// Why: the same repo deploys to two shapes of hosting:
+// - GitHub Pages project site lives under a subpath (/portfolio), so the
+//   Pages workflow sets PUBLIC_BASE_PATH=portfolio and the build uses it.
+// - Root hosts (Netlify/Vercel/custom domain, `npm run build` with no env)
+//   serve from `/`, so base must fall back to `/` or every bundled asset 404s
+//   and the page renders unstyled.
+const deployBasePath = (process.env.PUBLIC_BASE_PATH || '').trim().replace(/^\/+|\/+$/g, '');
+
 // https://astro.build/config
 export default defineConfig({
 	output: 'static',
   devToolbar: {
     enabled: false,
   },
-  site: SITE_URL,
-  base: '/portfolio/',
+  site: process.env.PUBLIC_SITE_URL || SITE_URL,
+  base: deployBasePath ? `/${deployBasePath}/` : '/',
   compressHTML: true,
   image: {
     responsiveStyles: true,
