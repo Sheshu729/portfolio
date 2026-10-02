@@ -14,7 +14,7 @@ export default defineConfig({
     enabled: false,
   },
   site: SITE_URL,
-  base: undefined,
+  base: '/portfolio/',
   compressHTML: true,
   image: {
     responsiveStyles: true,
