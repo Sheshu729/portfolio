@@ -40,6 +40,19 @@ const certifications = t.certifications ?? [];
 const checks = t.checks ?? [];
 const tags = t.tags ?? [];
 const bio = t.bio ?? [];
+// Why: resume below the bio (client request); every list is optional so a
+// partial override from PageBuilder/CMS renders only the blocks it carries.
+const resume = t.resume;
+const resumeAim = resume?.aim ?? "";
+const resumeEducation = resume?.education ?? [];
+const resumeSkills = resume?.skills ?? [];
+const resumeCertificates = resume?.certificates ?? [];
+const resumeProjects = resume?.projects ?? [];
+const resumeStartup = resume?.startup ?? [];
+const resumeLanguages = resume?.languages ?? [];
+const resumeHeadingClass =
+  "!text-xs !font-extrabold uppercase tracking-[0.18em] text-brand-dark/70";
+const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
 ---
 
 <Section id={sectionId} tone="page" class:list={["border-t border-brand-dark/10", className]}>
@@ -61,6 +74,102 @@ const bio = t.bio ?? [];
               {bio.map((paragraph) => (
                 <Text tag="p" variant="feature-body-sm" class="!leading-relaxed">{paragraph}</Text>
               ))}
+            </div>
+          )}
+
+          {resume && (
+            <div class="mt-10 max-w-3xl border-t border-brand-dark/10 pt-8">
+              <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">{resume.label}</Text>
+
+              <div class="mt-6 space-y-7">
+                {resumeAim && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.aimLabel}</Heading>
+                    <Text tag="p" variant="feature-body-sm" class="mt-2 !leading-relaxed">{resumeAim}</Text>
+                  </div>
+                )}
+
+                {resumeEducation.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.educationLabel}</Heading>
+                    <div class="mt-3 space-y-3">
+                      {resumeEducation.map((item) => (
+                        <div class="border-l-2 border-brand-primary/30 pl-4">
+                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
+                          <Text tag="p" variant="feature-body-sm" class="!text-brand-dark/70">{item.meta}</Text>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {resumeSkills.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.skillsLabel}</Heading>
+                    <div class="mt-3 space-y-3">
+                      {resumeSkills.map((group) => (
+                        <div>
+                          <Heading tag="h4" class={resumeTitleClass}>{group.title}</Heading>
+                          <Text tag="p" variant="feature-body-sm" class="!leading-relaxed !text-brand-dark/70">{group.text}</Text>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {resumeCertificates.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.certificatesLabel}</Heading>
+                    <ul class="mt-3 space-y-3">
+                      {resumeCertificates.map((cert) => (
+                        <li class="flex gap-3 rounded-md border border-brand-dark/10 bg-brand-primary/5 px-4 py-3">
+                          <span class="text-brand-accent" aria-hidden="true">✓</span>
+                          <Text tag="span" variant="feature-body-sm" class="!font-bold">{cert}</Text>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {resumeProjects.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.projectsLabel}</Heading>
+                    <div class="mt-3 space-y-4">
+                      {resumeProjects.map((item) => (
+                        <div>
+                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
+                          <Text tag="p" variant="feature-body-sm" class="mt-1 !leading-relaxed">{item.text}</Text>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {resumeStartup.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.startupLabel}</Heading>
+                    <div class="mt-3 space-y-4">
+                      {resumeStartup.map((item) => (
+                        <div>
+                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
+                          <Text tag="p" variant="feature-body-sm" class="mt-1 !leading-relaxed">{item.text}</Text>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {resumeLanguages.length > 0 && (
+                  <div>
+                    <Heading tag="h3" class={resumeHeadingClass}>{resume.languagesLabel}</Heading>
+                    <div class="mt-3 flex min-w-0 flex-wrap gap-2">
+                      {resumeLanguages.map((language) => (
+                        <span class="rounded-sm bg-brand-primary/10 px-3 py-1 text-xs font-bold text-brand-primary">{language}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 

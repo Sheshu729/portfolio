@@ -30,6 +30,59 @@
       "Figma",
       "Arduino"
     ],
+    "resume": {
+      "label": "RESUME",
+      "aimLabel": "CAREER AIM",
+      "aim": "To secure a role in a dynamic organization where I can apply and develop my skills in web and app development, while contributing innovative ideas and delivering high quality results.",
+      "educationLabel": "EDUCATION",
+      "education": [
+        {
+          "title": "B.E in Electronics and Communication Engineering",
+          "meta": "Acharya Institute of Engineering and Technology | Bengaluru, KA"
+        },
+        {
+          "title": "Pre-University Course (PUC)",
+          "meta": "Sri Sairam PU College | Saleemagar Gudemahalli, Anekal - KA"
+        },
+        {
+          "title": "SSLC",
+          "meta": "Anekal Public School | Anekal - KA"
+        }
+      ],
+      "skillsLabel": "SKILLS",
+      "skills": [
+        { "title": "Computer Applications", "text": "MS Word, Google Sheets, Google Docs" },
+        { "title": "Programming", "text": "Basic Knowledge of Python" },
+        { "title": "Designing", "text": "MS Word, Excel, PowerPoint, Quick Learner, Multitask Handling" },
+        { "title": "Technical Knowledge", "text": "HTML, Basic CSS, UI/UX using Figma, Kombai 2.0, Cursor, Manus" },
+        { "title": "Theoretical Knowledge", "text": "Basics On Nanotechnology (AFM, SEM, TEM)" }
+      ],
+      "certificatesLabel": "CERTIFICATES",
+      "certificates": [
+        "Hackathon INNOVATEX 2025",
+        "Certificate Internship Training Programme in IoT"
+      ],
+      "projectsLabel": "PROJECTS",
+      "projects": [
+        {
+          "title": "Radar System Using Ultrasonic Sensor",
+          "text": "A radar system using an ultrasonic sensor with Arduino works by transmitting ultrasonic waves and measuring the echo time from objects. The Arduino processes this time delay to calculate distance, enabling obstacle detection and simple scanning. The concept is used in DROID for encountering enemies and an aerospace radar."
+        },
+        {
+          "title": "Auto Rotate Solar Panel System",
+          "text": "An auto-rotate solar panel system uses sensors and a controller (like Arduino) to track the sun's movement. The panel rotates or tilts throughout the day to face the sun, maximizing sunlight exposure and improving power generation efficiency. It may be used in houses, factories, and solar panel plants to get maximum energy."
+        }
+      ],
+      "startupLabel": "STARTUP",
+      "startup": [
+        {
+          "title": "GoFarmWork | Go Fama Work",
+          "text": "A startup platform designed to bridge the gap between farmers and laborers. Farmers can post their work requirements and laborers can connect and receive work opportunities, creating a mutually beneficial ecosystem for both parties. The platform aims to improve agricultural workforce accessibility and empower rural communities."
+        }
+      ],
+      "languagesLabel": "LANGUAGES",
+      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"]
+    },
     "linkedinLabel": "in",
     "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
     "githubLabel": "gh",
@@ -68,6 +121,59 @@
       "Figma",
       "Arduino"
     ],
+    "resume": {
+      "label": "RESUME",
+      "aimLabel": "CAREER AIM",
+      "aim": "To secure a role in a dynamic organization where I can apply and develop my skills in web and app development, while contributing innovative ideas and delivering high quality results.",
+      "educationLabel": "EDUCATION",
+      "education": [
+        {
+          "title": "B.E in Electronics and Communication Engineering",
+          "meta": "Acharya Institute of Engineering and Technology | Bengaluru, KA"
+        },
+        {
+          "title": "Pre-University Course (PUC)",
+          "meta": "Sri Sairam PU College | Saleemagar Gudemahalli, Anekal - KA"
+        },
+        {
+          "title": "SSLC",
+          "meta": "Anekal Public School | Anekal - KA"
+        }
+      ],
+      "skillsLabel": "SKILLS",
+      "skills": [
+        { "title": "Computer Applications", "text": "MS Word, Google Sheets, Google Docs" },
+        { "title": "Programming", "text": "Basic Knowledge of Python" },
+        { "title": "Designing", "text": "MS Word, Excel, PowerPoint, Quick Learner, Multitask Handling" },
+        { "title": "Technical Knowledge", "text": "HTML, Basic CSS, UI/UX using Figma, Kombai 2.0, Cursor, Manus" },
+        { "title": "Theoretical Knowledge", "text": "Basics On Nanotechnology (AFM, SEM, TEM)" }
+      ],
+      "certificatesLabel": "CERTIFICATES",
+      "certificates": [
+        "Hackathon INNOVATEX 2025",
+        "Certificate Internship Training Programme in IoT"
+      ],
+      "projectsLabel": "PROJECTS",
+      "projects": [
+        {
+          "title": "Radar System Using Ultrasonic Sensor",
+          "text": "A radar system using an ultrasonic sensor with Arduino works by transmitting ultrasonic waves and measuring the echo time from objects. The Arduino processes this time delay to calculate distance, enabling obstacle detection and simple scanning. The concept is used in DROID for encountering enemies and an aerospace radar."
+        },
+        {
+          "title": "Auto Rotate Solar Panel System",
+          "text": "An auto-rotate solar panel system uses sensors and a controller (like Arduino) to track the sun's movement. The panel rotates or tilts throughout the day to face the sun, maximizing sunlight exposure and improving power generation efficiency. It may be used in houses, factories, and solar panel plants to get maximum energy."
+        }
+      ],
+      "startupLabel": "STARTUP",
+      "startup": [
+        {
+          "title": "GoFarmWork | Go Fama Work",
+          "text": "A startup platform designed to bridge the gap between farmers and laborers. Farmers can post their work requirements and laborers can connect and receive work opportunities, creating a mutually beneficial ecosystem for both parties. The platform aims to improve agricultural workforce accessibility and empower rural communities."
+        }
+      ],
+      "languagesLabel": "LANGUAGES",
+      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"]
+    },
     "linkedinLabel": "in",
     "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
     "githubLabel": "gh",
