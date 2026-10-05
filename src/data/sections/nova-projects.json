@@ -339,7 +339,7 @@
       "description": "One platform to rent, lease, or sell land. Owners list plots with photos, area, terms and pricing; seekers browse by type, location and budget, then contact owners directly without middlemen.",
       "image": "/assets/images/propertyhub-cover.png",
       "alt": "PropertyHub real estate marketplace cover",
-      "href": "https://propertyhub-i42pbyogi-sa-01a3.vercel.app/",
+      "href": "https://propertyhub-green.vercel.app/",
       "linkLabel": "Visit Property Hub live site",
       "summary": {
         "paragraphs": [
@@ -647,7 +647,7 @@
         {
           "heading": "SOURCE CODE AND DISCLAIMER",
           "paragraphs": [
-            "Live site: https://propertyhub-i42pbyogi-sa-01a3.vercel.app/ — open it with the button below.",
+            "Live site: https://propertyhub-green.vercel.app/ — open it with the button below.",
             "Marketplace code: https://github.com/Sheshu729/propertyhub-marketplace (React, Express and tRPC with listings, photo uploads, search and filters, favorites, inquiries and auth).",
             "This guide is for general information and does not constitute legal advice. Land laws, registration rules and taxes differ by region and land type. Consult a qualified lawyer for any transaction."
           ]
