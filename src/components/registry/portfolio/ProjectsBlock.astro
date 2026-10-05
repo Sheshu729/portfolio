@@ -540,14 +540,15 @@ const radarTicks = Array.from({ length: 36 }, (_, index) => ({
       aspect-ratio: auto;
     }
 
-    /* Why: the grid is 1.38fr/1fr, so an odd card would leave a hole on the
-       right. A third project spans the full row instead. */
-    .project-card__link:last-child {
+    /* Why: the grid is 1.38fr/1fr, so with an odd number of cards the last
+       one would leave a hole on the right. It spans the full row instead;
+       with an even count every card keeps its half-row slot. */
+    .project-card__link:nth-child(odd):last-child {
       grid-column: 1 / -1;
     }
 
     /* The full-width card is wide enough for the complete project summary. */
-    .project-card__link:last-child .project-card__description {
+    .project-card__link:nth-child(odd):last-child .project-card__description {
       display: block;
       overflow: visible;
       -webkit-line-clamp: unset;

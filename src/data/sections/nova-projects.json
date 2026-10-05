@@ -1,6 +1,6 @@
 {
   "title": "Projects",
-  "description": "Three builds that show how I work: sensing hardware, renewable energy, and a two-sided marketplace that connects farmers with labourers.",
+  "description": "Four builds that show how I work: sensing hardware, renewable energy, a farm-labour marketplace, and a full-stack property marketplace.",
   "linkLabel": "See on GitHub",
   "linkHref": "https://github.com/Sheshu729",
   "items": [
@@ -28,6 +28,14 @@
       "alt": "GoFarmWork logo",
       "fit": "contain",
       "href": "https://gfwapk.pages.dev"
+    },
+    {
+      "category": "Web App / Full-Stack",
+      "title": "PropertyHub - Real Estate Marketplace",
+      "description": "A full-stack property marketplace built with React, Express and tRPC: listings with photo uploads, search and filters by location, price and type, plus favorites, inquiries and auth.",
+      "image": "/assets/images/propertyhub-cover.png",
+      "alt": "PropertyHub real estate marketplace cover",
+      "href": "https://github.com/Sheshu729/propertyhub-marketplace"
     }
   ]
 }
