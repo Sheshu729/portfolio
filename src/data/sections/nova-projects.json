@@ -168,7 +168,161 @@
       "description": "A solar panel that turns through the day so it always faces the sun and collects more energy.",
       "media": "solar",
       "image": "/assets/images/t001-nova/t001-nova-project-building.webp",
-      "alt": "Solar panels tracking sunlight on a building roof"
+      "alt": "Solar panels tracking sunlight on a building roof",
+      "summary": {
+        "paragraphs": [
+          "A Solar Tracking System is an automatic system designed to improve the efficiency of a solar panel by continuously adjusting its position toward the direction of maximum sunlight. In this project, LDR (Light Dependent Resistor) sensors are used to detect the intensity of light from different directions. An Arduino compares the sensor readings and controls a servo motor to rotate the solar panel toward the stronger light source.",
+          "When both LDRs receive nearly equal light, the panel remains in its current position. When there is a difference in light intensity, the servo rotates the panel until better alignment is achieved. This system demonstrates the integration of sensors, microcontrollers, motor control, and renewable energy technology."
+        ],
+        "formulaLabel": "System flow",
+        "formula": "LDR Sensors -> Arduino -> Servo Motor -> Solar Panel Orientation",
+        "componentsLabel": "Main components",
+        "components": [
+          "Arduino Uno",
+          "2 LDR sensors",
+          "Servo motor (SG90)",
+          "Small solar panel",
+          "10 kOhm resistors",
+          "Breadboard and jumper wires",
+          "5 V supply / USB"
+        ],
+        "applicationsLabel": "Applications",
+        "applications": "Small solar-panel demonstrators; renewable-energy education; automatic light-following systems; solar-powered sensor prototypes; robotics and embedded-system experiments; energy-efficiency demonstrations."
+      },
+      "reportLabel": "Full project report",
+      "report": [
+        {
+          "heading": "ABSTRACT",
+          "paragraphs": [
+            "A solar tracking system is an automatic mechanism that changes the orientation of a solar panel according to the position of the light source. This project uses Light Dependent Resistors (LDRs) to sense the relative intensity of sunlight and an Arduino to process the sensor readings. A servo motor rotates the panel toward the direction receiving greater light. The system demonstrates the basic principle of automatic solar tracking and can be used as an educational prototype for renewable-energy and embedded-system applications."
+          ]
+        },
+        {
+          "heading": "INTRODUCTION",
+          "paragraphs": [
+            "Fixed solar panels have a predetermined orientation, while the apparent position of the Sun changes during the day. A tracking mechanism can adjust the panel orientation so that its surface remains better aligned with incoming sunlight. This prototype uses two LDR sensors separated by a small shade or barrier. When one LDR receives more light than the other, the Arduino commands the servo to rotate toward the brighter side."
+          ]
+        },
+        {
+          "heading": "OBJECTIVES",
+          "ordered": true,
+          "list": [
+            "Detect the relative direction of stronger sunlight.",
+            "Automatically rotate the solar panel toward stronger light.",
+            "Demonstrate closed-loop control using sensors and a microcontroller.",
+            "Improve the alignment of a small solar panel during changing light conditions.",
+            "Provide a low-cost prototype for learning renewable-energy automation."
+          ]
+        },
+        {
+          "heading": "COMPONENTS REQUIRED",
+          "table": {
+            "headers": ["Component", "Purpose"],
+            "rows": [
+              ["Arduino Uno", "Reads LDR values and controls the servo"],
+              ["2 LDR sensors", "Detect relative light intensity"],
+              ["Servo motor (SG90)", "Rotates the solar panel"],
+              ["Small solar panel", "Power-generation demonstration"],
+              ["10 kOhm resistors", "Voltage-divider circuits with LDRs"],
+              ["Breadboard and jumper wires", "Circuit connections"],
+              ["5 V supply / USB", "Powers the controller and servo"]
+            ]
+          }
+        },
+        {
+          "heading": "WORKING PRINCIPLE",
+          "paragraphs": [
+            "Each LDR changes its resistance according to the amount of light falling on it. The LDRs are connected as voltage dividers so the Arduino can read their light-dependent voltages using analog input pins. A small vertical divider between the LDRs helps create a difference in illumination when the panel is not aligned with the light source.",
+            "The Arduino compares the two sensor readings. If the left LDR receives significantly more light, the servo moves toward the left. If the right LDR receives significantly more light, the servo moves toward the right. When both readings are approximately equal, the servo remains near its current position."
+          ]
+        },
+        {
+          "heading": "BLOCK DIAGRAM",
+          "paragraphs": [
+            "LDR Sensors -> Arduino -> Servo Motor -> Solar Panel Orientation -> improved alignment with sunlight"
+          ]
+        },
+        {
+          "heading": "CIRCUIT CONNECTIONS",
+          "table": {
+            "headers": ["Component / Pin", "Arduino Connection"],
+            "rows": [
+              ["Left LDR divider output", "A0"],
+              ["Right LDR divider output", "A1"],
+              ["Servo signal", "D9"],
+              ["LDR divider VCC", "5V"],
+              ["LDR divider GND", "GND"],
+              ["Servo VCC", "5V*"],
+              ["Servo GND", "GND"]
+            ]
+          },
+          "note": "* For a larger servo, use an appropriate external supply and connect its ground to Arduino ground."
+        },
+        {
+          "heading": "ALGORITHM",
+          "ordered": true,
+          "list": [
+            "Initialize the LDR inputs and servo.",
+            "Read the left and right LDR values.",
+            "Calculate the difference between the readings.",
+            "If the difference exceeds a tolerance, rotate the servo toward the brighter side.",
+            "Keep the servo within safe angle limits.",
+            "Repeat continuously."
+          ]
+        },
+        {
+          "heading": "ARDUINO CODE",
+          "code": "#include <Servo.h>\nServo trackerServo;\nconst int leftLDR = A0;\nconst int rightLDR = A1;\nconst int servoPin = 9;\nint angle = 90;\nconst int tolerance = 40;\nvoid setup() {\n  trackerServo.attach(servoPin);\n  trackerServo.write(angle);\n  Serial.begin(9600);\n}\nvoid loop() {\n  int leftValue = analogRead(leftLDR);\n  int rightValue = analogRead(rightLDR);\n  int difference = leftValue - rightValue;\n  if (difference > tolerance) {\n    angle++;\n  }\n  else if (difference < -tolerance) {\n    angle--;\n  }\n  angle = constrain(angle, 10, 170);\n  trackerServo.write(angle);\n  Serial.print(\"Left: \");\n  Serial.print(leftValue);\n  Serial.print(\" Right: \");\n  Serial.print(rightValue);\n  Serial.print(\" Angle: \");\n  Serial.println(angle);\n  delay(50);\n}"
+        },
+        {
+          "heading": "CODE EXPLANATION",
+          "paragraphs": [
+            "analogRead(): reads the voltage produced by each LDR divider. difference: determines which sensor receives stronger light. tolerance: prevents unnecessary servo movement caused by small sensor fluctuations. constrain(): keeps the servo within a safe angular range. servo.write(): moves the panel to the calculated position."
+          ]
+        },
+        {
+          "heading": "OUTPUT / OPERATION",
+          "paragraphs": [
+            "When the light source is stronger on one side, the corresponding LDR produces a different analog reading. The Arduino responds by rotating the servo toward that side. As the panel becomes better aligned, the readings approach one another and servo movement reduces or stops."
+          ]
+        },
+        {
+          "heading": "APPLICATIONS",
+          "paragraphs": [
+            "Small solar-panel demonstrators; renewable-energy education; automatic light-following systems; solar-powered sensor prototypes; robotics and embedded-system experiments; energy-efficiency demonstrations."
+          ]
+        },
+        {
+          "heading": "ADVANTAGES",
+          "paragraphs": [
+            "Automatic operation, low-cost components, simple control logic, easy Arduino implementation, improved panel alignment compared with a fixed prototype, and strong educational value."
+          ]
+        },
+        {
+          "heading": "LIMITATIONS",
+          "paragraphs": [
+            "LDR readings can be affected by clouds, shadows and artificial light. A single-axis prototype cannot track the complete two-dimensional position of the Sun. Servo motors consume energy and have limited torque. The improvement in energy output depends on location, panel orientation, weather and tracking design."
+          ]
+        },
+        {
+          "heading": "FUTURE ENHANCEMENTS",
+          "paragraphs": [
+            "A two-axis tracker can be developed using four LDRs and two motors. The system can also include real-time power measurement, automatic night positioning, weather protection, wireless monitoring, data logging, and more efficient motor-control strategies. A light-position algorithm can also be used instead of LDR feedback."
+          ]
+        },
+        {
+          "heading": "CONCLUSION",
+          "paragraphs": [
+            "The solar tracking system demonstrates how sensors, a microcontroller and an actuator can work together to automatically orient a solar panel toward stronger light. LDRs provide feedback about light intensity, Arduino performs the comparison and control logic, and the servo changes the panel orientation. The project provides a practical introduction to renewable energy, feedback control and embedded systems."
+          ]
+        },
+        {
+          "heading": "REFERENCES / LEARNING SOURCES",
+          "paragraphs": [
+            "Arduino Servo library documentation; LDR and voltage-divider fundamentals; basic photovoltaic and solar-tracking principles."
+          ]
+        }
+      ]
     },
     {
       "category": "Startup / Founder",
