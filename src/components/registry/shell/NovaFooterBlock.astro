@@ -24,8 +24,8 @@ const contactLinks = [
 const socialLinks = getEnabledSocialLinks(company);
 ---
 
-<footer id={id} style="background-image: url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')" class="relative overflow-hidden rounded-t-[var(--rounded-lg)] bg-neutral-500 bg-cover bg-center bg-no-repeat text-brand-light">
-  <div class="absolute inset-0 bg-neutral-500/60" aria-hidden="true"></div>
+<footer id={id} style="background-image: url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')" class="relative overflow-hidden rounded-t-[var(--rounded-lg)] bg-black bg-cover bg-center bg-no-repeat text-brand-light">
+  <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
   <div class="ui-container relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-10 py-16 pb-8 sm:py-20">
     <div class="mx-auto max-w-5xl text-center">
       <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-white">
@@ -37,7 +37,7 @@ const socialLinks = getEnabledSocialLinks(company);
       <p class="mx-auto mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-brand-light/80">{copy.description}</p>
       <div class="mx-auto mt-10 flex w-full max-w-xs flex-col justify-center gap-3 sm:mt-12 sm:max-w-none sm:flex-row">
         <Button href={getNovaNavigationPath(copy.primaryHref, locale)} variant="accent" class="min-h-11 w-full sm:w-auto">{copy.primaryLabel}</Button>
-        <Button href={getNovaNavigationPath(copy.secondaryHref, locale)} variant="outline" class="min-h-11 w-full !border-brand-light/65 !bg-brand-dark/35 !text-brand-light sm:w-auto">{copy.secondaryLabel}</Button>
+        <Button href={getNovaNavigationPath(copy.secondaryHref, locale)} variant="outline" class="min-h-11 w-full !border-brand-light/65 !bg-black/50 !text-brand-light sm:w-auto">{copy.secondaryLabel}</Button>
       </div>
     </div>
     <div class="flex flex-col items-center gap-8 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">

@@ -94,7 +94,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
         </div>
       </div>
 
-      <div class="hero-stats grid grid-cols-2 rounded-t-[var(--rounded-lg)] bg-brand-dark px-[clamp(1rem,3vw,2.5rem)] py-[clamp(2rem,3vw,2.5rem)] text-brand-light md:grid-cols-4" data-motion-sequence="viewport" data-motion-profile="soft">
+      <div class="hero-stats grid grid-cols-2 rounded-t-[var(--rounded-lg)] bg-black px-[clamp(1rem,3vw,2.5rem)] py-[clamp(2rem,3vw,2.5rem)] text-brand-light md:grid-cols-4" data-motion-sequence="viewport" data-motion-profile="soft">
         {stats.map((stat) => (
           <div class="relative flex flex-col items-center gap-[0.35rem] px-[clamp(1.25rem,2.5vw,2rem)] text-center md:[&:not(:first-child)]:before:absolute md:[&:not(:first-child)]:before:inset-y-[25%] md:[&:not(:first-child)]:before:left-0 md:[&:not(:first-child)]:before:w-px md:[&:not(:first-child)]:before:bg-brand-light/20 md:[&:not(:first-child)]:before:content-['']">
             <Heading tag="strong" variant="section-heading-lg" class="text-brand-accent">{stat.value}</Heading>
