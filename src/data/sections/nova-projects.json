@@ -10,7 +10,157 @@
       "description": "An ultrasonic sensor sweeps the area and plots every detected object on a laptop screen in real time.",
       "media": "radar",
       "image": "/assets/images/t001-nova/t001-nova-project-laptop.webp",
-      "alt": "Ultrasonic radar project displayed on a laptop screen"
+      "alt": "Ultrasonic radar project displayed on a laptop screen",
+      "summary": {
+        "paragraphs": [
+          "A radar system using an ultrasonic sensor is a simple object-detection system that works on the principle of echo detection. Instead of using electromagnetic radio waves like conventional radar, it uses ultrasonic sound waves.",
+          "The ultrasonic sensor sends a high-frequency sound pulse toward an object. When the pulse hits the object, it is reflected back to the sensor. The system measures the time taken for the echo to return and calculates the distance.",
+          "The sensor can be mounted on a servo motor to rotate through a specific angle, allowing the system to scan its surroundings. A microcontroller such as Arduino processes the sensor data and can display the detected object's distance and angle on a computer screen, creating a radar-like visualization."
+        ],
+        "formulaLabel": "Distance formula",
+        "formula": "Distance = (Speed of Sound × Time) / 2",
+        "componentsLabel": "Main components",
+        "components": [
+          "Arduino / microcontroller",
+          "HC-SR04 ultrasonic sensor",
+          "Servo motor",
+          "Breadboard and jumper wires",
+          "Computer/display",
+          "Power supply"
+        ],
+        "applicationsLabel": "Applications",
+        "applications": "Obstacle detection, robotic navigation, parking assistance, security demonstrations, and educational projects."
+      },
+      "reportLabel": "Full project report",
+      "report": [
+        {
+          "heading": "ABSTRACT",
+          "paragraphs": [
+            "This project presents a simple radar-like object detection system using an Arduino, an HC-SR04 ultrasonic sensor, and a servo motor. The ultrasonic sensor transmits a high-frequency sound pulse and receives the reflected echo from an object. The Arduino measures the echo time and calculates distance. By rotating the sensor with a servo motor, the system scans different angles and identifies objects around it. The measured angle and distance can be sent to a computer for visualization. Technically, this is an ultrasonic scanning system rather than true radar because it uses sound waves instead of electromagnetic radio waves."
+          ]
+        },
+        {
+          "heading": "INTRODUCTION",
+          "paragraphs": [
+            "Conventional radar uses electromagnetic waves to detect the range and direction of objects. A similar scanning concept can be demonstrated economically using ultrasonic waves. The HC-SR04 is easy to interface with Arduino and is suitable for short-range object detection. A servo motor allows the sensor to sweep through a range of angles."
+          ]
+        },
+        {
+          "heading": "OBJECTIVES",
+          "ordered": true,
+          "list": [
+            "Detect nearby objects.",
+            "Measure approximate object distance.",
+            "Rotate the sensor through multiple angles.",
+            "Send angle and distance data through serial communication.",
+            "Demonstrate the basic concept of scanning and ranging."
+          ]
+        },
+        {
+          "heading": "COMPONENTS REQUIRED",
+          "table": {
+            "headers": ["Component", "Purpose"],
+            "rows": [
+              ["Arduino Uno", "Controls sensing, servo and processing"],
+              ["HC-SR04", "Ultrasonic distance measurement"],
+              ["SG90 or similar servo", "Rotates the sensor"],
+              ["Breadboard", "Circuit assembly"],
+              ["Jumper wires", "Electrical connections"],
+              ["USB/power supply", "Power and programming"],
+              ["Computer", "Serial monitoring/visualization"]
+            ]
+          }
+        },
+        {
+          "heading": "WORKING PRINCIPLE",
+          "paragraphs": [
+            "The Arduino sends a short trigger pulse to the HC-SR04. The sensor emits an ultrasonic burst, approximately 40 kHz. When the sound reaches an object, it is reflected back. The sensor reports the echo duration, which the Arduino converts into distance.",
+            "Distance = (Speed of Sound x Echo Time) / 2",
+            "At room temperature, the speed of sound is approximately 343 m/s, or 0.0343 cm per microsecond. Division by two accounts for the outgoing and returning paths."
+          ]
+        },
+        {
+          "heading": "CIRCUIT CONNECTIONS",
+          "table": {
+            "headers": ["Pin", "Arduino"],
+            "rows": [
+              ["HC-SR04 VCC", "5V"],
+              ["HC-SR04 GND", "GND"],
+              ["TRIG", "D9"],
+              ["ECHO", "D10"],
+              ["Servo signal", "D6"],
+              ["Servo VCC", "5V*"],
+              ["Servo GND", "GND"]
+            ]
+          },
+          "note": "* Use a separate suitable 5 V supply for larger servos and connect grounds together."
+        },
+        {
+          "heading": "ALGORITHM",
+          "ordered": true,
+          "list": [
+            "Initialize sensor pins and servo.",
+            "Move the servo to an angle.",
+            "Trigger the ultrasonic sensor.",
+            "Measure echo duration.",
+            "Calculate distance.",
+            "Send angle and distance through serial communication.",
+            "Repeat for the scan range and reverse direction."
+          ]
+        },
+        {
+          "heading": "ARDUINO CODE",
+          "code": "#include <Servo.h>\nServo radarServo;\nconst int trigPin = 9;\nconst int echoPin = 10;\nconst int servoPin = 6;\nlong duration;\nfloat distanceCm;\nfloat getDistance() {\n  digitalWrite(trigPin, LOW);\n  delayMicroseconds(2);\n  digitalWrite(trigPin, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(trigPin, LOW);\n  duration = pulseIn(echoPin, HIGH, 30000);\n  if (duration == 0) return -1;\n  distanceCm = (duration * 0.0343) / 2.0;\n  return distanceCm;\n}\nvoid setup() {\n  pinMode(trigPin, OUTPUT);\n  pinMode(echoPin, INPUT);\n  radarServo.attach(servoPin);\n  Serial.begin(9600);\n  radarServo.write(90);\n  delay(500);\n}\nvoid loop() {\n  for (int angle = 15; angle <= 165; angle++) {\n    radarServo.write(angle);\n    delay(20);\n    float d = getDistance();\n    Serial.print(angle);\n    Serial.print(\",\");\n    Serial.println(d);\n    delay(15);\n  }\n  for (int angle = 165; angle >= 15; angle--) {\n    radarServo.write(angle);\n    delay(20);\n    float d = getDistance();\n    Serial.print(angle);\n    Serial.print(\",\");\n    Serial.println(d);\n    delay(15);\n  }\n}"
+        },
+        {
+          "heading": "CODE EXPLANATION",
+          "paragraphs": [
+            "Servo library: controls the servo. getDistance(): triggers the HC-SR04 and calculates distance. pulseIn(): measures echo duration. servo.write(angle): positions the sensor. Serial.print(): sends angle and distance to the computer."
+          ]
+        },
+        {
+          "heading": "OUTPUT",
+          "paragraphs": [
+            "The serial output is sent as angle,distance. For example, 90,42.6 means approximately 42.6 cm at a sensor angle of 90 degrees. These values can be plotted by a computer program to create a radar-style display."
+          ]
+        },
+        {
+          "heading": "APPLICATIONS",
+          "paragraphs": [
+            "Obstacle detection; robotic navigation; parking-assistance prototypes; educational demonstrations; short-range object scanning; embedded-system projects."
+          ]
+        },
+        {
+          "heading": "ADVANTAGES",
+          "paragraphs": [
+            "Low cost, simple programming, non-contact measurement, easy Arduino interfacing, and useful for learning sensors, actuators and embedded systems."
+          ]
+        },
+        {
+          "heading": "LIMITATIONS",
+          "paragraphs": [
+            "Short range compared with real radar; readings depend on object shape and surface; servo movement introduces delay; ultrasonic waves are affected by environmental conditions; a single sensor has limited ability to distinguish multiple objects."
+          ]
+        },
+        {
+          "heading": "FUTURE ENHANCEMENTS",
+          "paragraphs": [
+            "A graphical radar interface, audible alarms, wireless communication, data logging, multiple sensors, improved positioning, or an actual radar module can be added for more advanced versions."
+          ]
+        },
+        {
+          "heading": "CONCLUSION",
+          "paragraphs": [
+            "The project demonstrates scanning, distance measurement and angular positioning using inexpensive embedded-system components. Arduino controls the HC-SR04 and servo, while serial communication allows the measurements to be monitored or visualized. It provides a practical introduction to ultrasonic sensing, servo control and time-of-flight measurement."
+          ]
+        },
+        {
+          "heading": "REFERENCES / LEARNING SOURCES",
+          "paragraphs": [
+            "Arduino Servo library documentation; HC-SR04 sensor reference/datasheet; basic principles of ultrasonic time-of-flight distance measurement."
+          ]
+        }
+      ]
     },
     {
       "category": "Renewable energy / Arduino",
