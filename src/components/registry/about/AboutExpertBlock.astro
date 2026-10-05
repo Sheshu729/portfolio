@@ -169,6 +169,18 @@ const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
                     </div>
                   </div>
                 )}
+
+                {resume.file && (
+                  <div class="pt-1">
+                    <a
+                      href={resume.file}
+                      download
+                      class="inline-flex min-h-11 items-center rounded-sm bg-brand-dark px-5 py-2.5 text-sm font-bold text-brand-light transition-colors hover:bg-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+                    >
+                      {resume.downloadLabel}
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           )}

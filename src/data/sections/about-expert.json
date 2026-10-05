@@ -81,7 +81,9 @@
         }
       ],
       "languagesLabel": "LANGUAGES",
-      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"]
+      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"],
+      "downloadLabel": "Download Resume",
+      "file": "/assets/Sheshadri-V-Resume.pdf"
     },
     "linkedinLabel": "in",
     "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
@@ -172,7 +174,9 @@
         }
       ],
       "languagesLabel": "LANGUAGES",
-      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"]
+      "languages": ["English", "Kannada", "Tamil", "Telugu", "Hindi"],
+      "downloadLabel": "Download Resume",
+      "file": "/assets/Sheshadri-V-Resume.pdf"
     },
     "linkedinLabel": "in",
     "linkedinUrl": "https://linkedin.com/in/sheshadri-v-94bb50320",
