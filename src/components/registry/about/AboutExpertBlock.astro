@@ -42,17 +42,10 @@ const tags = t.tags ?? [];
 const bio = t.bio ?? [];
 // Why: resume below the bio (client request); every list is optional so a
 // partial override from PageBuilder/CMS renders only the blocks it carries.
-const resume = t.resume;
-const resumeAim = resume?.aim ?? "";
-const resumeEducation = resume?.education ?? [];
-const resumeSkills = resume?.skills ?? [];
-const resumeCertificates = resume?.certificates ?? [];
-const resumeProjects = resume?.projects ?? [];
-const resumeStartup = resume?.startup ?? [];
-const resumeLanguages = resume?.languages ?? [];
-const resumeHeadingClass =
-  "!text-xs !font-extrabold uppercase tracking-[0.18em] text-brand-dark/70";
-const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
+// Why: the full resume lives in the PDF file (client request); the section
+// only links to it with a download button next to the profile links.
+const resumeFile = t.resume?.file ?? "";
+const resumeDownloadLabel = t.resume?.downloadLabel ?? "";
 ---
 
 <Section id={sectionId} tone="page" class:list={["border-t border-brand-dark/10", className]}>
@@ -74,114 +67,6 @@ const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
               {bio.map((paragraph) => (
                 <Text tag="p" variant="feature-body-sm" class="!leading-relaxed">{paragraph}</Text>
               ))}
-            </div>
-          )}
-
-          {resume && (
-            <div class="mt-10 max-w-3xl border-t border-brand-dark/10 pt-8">
-              <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">{resume.label}</Text>
-
-              <div class="mt-6 space-y-7">
-                {resumeAim && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.aimLabel}</Heading>
-                    <Text tag="p" variant="feature-body-sm" class="mt-2 !leading-relaxed">{resumeAim}</Text>
-                  </div>
-                )}
-
-                {resumeEducation.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.educationLabel}</Heading>
-                    <div class="mt-3 space-y-3">
-                      {resumeEducation.map((item) => (
-                        <div class="border-l-2 border-brand-primary/30 pl-4">
-                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
-                          <Text tag="p" variant="feature-body-sm" class="!text-brand-dark/70">{item.meta}</Text>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {resumeSkills.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.skillsLabel}</Heading>
-                    <div class="mt-3 space-y-3">
-                      {resumeSkills.map((group) => (
-                        <div>
-                          <Heading tag="h4" class={resumeTitleClass}>{group.title}</Heading>
-                          <Text tag="p" variant="feature-body-sm" class="!leading-relaxed !text-brand-dark/70">{group.text}</Text>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {resumeCertificates.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.certificatesLabel}</Heading>
-                    <ul class="mt-3 space-y-3">
-                      {resumeCertificates.map((cert) => (
-                        <li class="flex gap-3 rounded-md border border-brand-dark/10 bg-brand-primary/5 px-4 py-3">
-                          <span class="text-brand-accent" aria-hidden="true">✓</span>
-                          <Text tag="span" variant="feature-body-sm" class="!font-bold">{cert}</Text>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {resumeProjects.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.projectsLabel}</Heading>
-                    <div class="mt-3 space-y-4">
-                      {resumeProjects.map((item) => (
-                        <div>
-                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
-                          <Text tag="p" variant="feature-body-sm" class="mt-1 !leading-relaxed">{item.text}</Text>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {resumeStartup.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.startupLabel}</Heading>
-                    <div class="mt-3 space-y-4">
-                      {resumeStartup.map((item) => (
-                        <div>
-                          <Heading tag="h4" class={resumeTitleClass}>{item.title}</Heading>
-                          <Text tag="p" variant="feature-body-sm" class="mt-1 !leading-relaxed">{item.text}</Text>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {resumeLanguages.length > 0 && (
-                  <div>
-                    <Heading tag="h3" class={resumeHeadingClass}>{resume.languagesLabel}</Heading>
-                    <div class="mt-3 flex min-w-0 flex-wrap gap-2">
-                      {resumeLanguages.map((language) => (
-                        <span class="rounded-sm bg-brand-primary/10 px-3 py-1 text-xs font-bold text-brand-primary">{language}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {resume.file && (
-                  <div class="pt-1">
-                    <a
-                      href={resume.file}
-                      download
-                      class="inline-flex min-h-11 items-center rounded-sm bg-brand-dark px-5 py-2.5 text-sm font-bold text-brand-light transition-colors hover:bg-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
-                    >
-                      {resume.downloadLabel}
-                    </a>
-                  </div>
-                )}
-              </div>
             </div>
           )}
 
@@ -233,7 +118,7 @@ const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
             </div>
           </div>
 
-          {(t.linkedinUrl || t.githubUrl) && (
+          {(t.linkedinUrl || t.githubUrl || resumeFile) && (
             <div class="mt-10 flex flex-wrap gap-3 lg:mt-12">
               {t.linkedinUrl && (
                 <a
@@ -253,6 +138,15 @@ const resumeTitleClass = "!text-sm !font-extrabold text-brand-dark";
                   class="inline-flex min-h-11 items-center rounded-sm border border-brand-dark/25 px-5 py-2.5 text-sm font-bold text-brand-dark transition-colors hover:border-brand-primary hover:text-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
                 >
                   {t.githubName}
+                </a>
+              )}
+              {resumeFile && (
+                <a
+                  href={resumeFile}
+                  download
+                  class="inline-flex min-h-11 items-center rounded-sm bg-brand-dark px-5 py-2.5 text-sm font-bold text-brand-light transition-colors hover:bg-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+                >
+                  {resumeDownloadLabel}
                 </a>
               )}
             </div>
