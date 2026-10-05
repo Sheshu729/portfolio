@@ -123,7 +123,7 @@ dialog[open] {
     --site-header-height: 5.75rem;
     /* Extra space below fixed navbar for hero / first sections (px breaks mobile-first rule; use rem) */
     --hero-below-header-gap: 0.75rem;
-    --ui-nav-drawer-bg: var(--color-brand-dark);
+    --ui-nav-drawer-bg: #000;
     --ui-nav-drawer-link: rgba(255, 255, 255, 0.92);
     --ui-nav-drawer-link-hover: var(--color-brand-accent);
     --ui-nav-drawer-muted: rgba(255, 255, 255, 0.45);

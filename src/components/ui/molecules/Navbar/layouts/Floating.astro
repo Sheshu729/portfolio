@@ -27,9 +27,8 @@ const isSolid = true;
 // Static classes (overlay on hero) depending on the theme
 const staticTextClass = isDark ? "text-white" : "text-brand-dark";
 // Fixed classes (after scrolling) depending on the theme
-const fixedShellClass = isDark
-	? "border-white/10 bg-neutral-500/95 text-white shadow-lg shadow-black/20"
-	: "border-brand-dark/10 bg-[var(--ui-bg-page)]/95 text-brand-dark shadow-lg shadow-black/5";
+const fixedShellClass =
+	"border-white/10 bg-black text-white shadow-lg shadow-black/40";
 ---
 
 <!-- Dlaczego: pierwsza nawigacja jest przezroczystym overlayem na hero (absolute),
@@ -132,9 +131,9 @@ const fixedShellClass = isDark
 		width: min(calc(100% - 2rem), 90rem);
 		transform: translateX(-50%);
 		border-color: transparent;
-		background: color-mix(in oklab, var(--color-neutral-500, #737373) 95%, transparent);
+		background: #000;
 		color: var(--color-brand-light);
-		box-shadow: 0 0.5rem 1.5rem color-mix(in oklab, var(--color-brand-dark) 22%, transparent);
+		box-shadow: 0 0.5rem 1.5rem color-mix(in oklab, black 40%, transparent);
 	}
 
 	:global(html[data-theme="nova"] header[data-site-header-static]) {
@@ -189,10 +188,11 @@ const fixedShellClass = isDark
 	:global(html[data-theme="nova"] header[data-site-header-fixed] .ui-nav-cta) {
 		border-radius: 9999px;
 		padding: 0.7rem 1.2rem;
-		background: var(--color-brand-dark);
-		color: var(--color-brand-light);
+		background: var(--color-brand-accent);
+		color: #161616;
 		font-family: var(--font-sans);
 		font-size: 0.875rem;
+		font-weight: 700;
 		letter-spacing: 0.02em;
 	}
 

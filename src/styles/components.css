@@ -393,7 +393,7 @@
   }
 
   .ui-button-primary {
-    @apply bg-brand-primary text-white shadow-xl shadow-brand-primary/20;
+    @apply bg-black text-white shadow-xl shadow-black/25;
   }
 
   .ui-button-accent {

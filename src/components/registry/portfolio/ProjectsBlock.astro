@@ -34,6 +34,7 @@ type Project = {
   image?: string;
   alt?: string;
   href?: string;
+  linkLabel?: string;
   media?: MediaKind;
   fit?: "cover" | "contain";
   summary?: ProjectSummary;
@@ -241,6 +242,20 @@ const reportTitleClass = "!text-base !font-extrabold text-brand-dark";
                         )}
                       </div>
                     ))}
+                  </div>
+                )}
+                {item.href && (
+                  <div class="flex flex-wrap items-center gap-3 border-t border-brand-dark/10 pt-5">
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      class="ui-button ui-button-primary h-11 px-6 text-sm"
+                      onclick="event.stopPropagation()"
+                    >
+                      <span>{item.linkLabel ?? "View live site"}</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
                   </div>
                 )}
               </div>

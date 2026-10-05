@@ -1,8 +1,8 @@
 export type NavTheme = "light" | "dark" | "transparent";
 
 export const navThemeClasses: Record<NavTheme, string> = {
-	transparent: "bg-transparent text-white",
+	transparent: "bg-black text-white",
 	light:
-		"border-b border-brand-dark/10 bg-[var(--ui-bg-page)]/95 text-brand-dark shadow-sm backdrop-blur-md",
-	dark: "bg-brand-dark text-white",
+		"border-b border-white/10 bg-black text-white shadow-lg shadow-black/40",
+	dark: "border-b border-white/10 bg-black text-white shadow-lg shadow-black/40",
 };

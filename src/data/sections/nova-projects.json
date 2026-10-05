@@ -335,11 +335,324 @@
     },
     {
       "category": "Web App / Full-Stack",
-      "title": "PropertyHub - Real Estate Marketplace",
-      "description": "A full-stack property marketplace built with React, Express and tRPC: listings with photo uploads, search and filters by location, price and type, plus favorites, inquiries and auth.",
+      "title": "Property Hub - Land Rent, Lease & Sale Marketplace",
+      "description": "One platform to rent, lease, or sell land. Owners list plots with photos, area, terms and pricing; seekers browse by type, location and budget, then contact owners directly without middlemen.",
       "image": "/assets/images/propertyhub-cover.png",
       "alt": "PropertyHub real estate marketplace cover",
-      "href": "https://github.com/Sheshu729/propertyhub-marketplace"
+      "href": "https://propertyhub-i42pbyogi-sa-01a3.vercel.app/",
+      "linkLabel": "Visit Property Hub live site",
+      "summary": {
+        "paragraphs": [
+          "Property Hub is a website that connects landowners with people looking for land. Owners can list a plot for rent, lease, or sale, and buyers or tenants can browse listings and contact them directly. The goal is to make land transactions simpler, more transparent, and accessible to everyone.",
+          "Land deals are often handled through word of mouth, brokers and scattered classified ads. This makes it hard to find genuine plots, compare prices and trust the information. Property Hub brings listings, details and communication together in one place.",
+          "Property Hub aims to become a trusted marketplace for land. It helps owners make the most of their property and helps seekers find the right plot quickly and confidently."
+        ],
+        "formulaLabel": "How it works",
+        "formula": "List -> Discover -> Connect",
+        "componentsLabel": "What you can do - rent, lease, sell",
+        "components": [
+          "Rent: short-term use of land for farming, events, parking, storage, or temporary projects.",
+          "Lease: longer-term agreements for agricultural, commercial, or industrial use, with clear terms.",
+          "Sell: list land for outright sale and reach interested buyers in one place.",
+          "Create listings: owners post land details, price, size, and location with photos and map pin.",
+          "Browse and search: visitors filter listings by rent, lease, or sale, location, budget, area and land type.",
+          "Direct contact: buyers and tenants reach owners without middlemen via messaging and call-back requests.",
+          "Clear listing details: photos, area, terms, and pricing in one place, with a Verified badge where applicable.",
+          "Easy to use: a simple website that works on phone and desktop."
+        ],
+        "applicationsLabel": "Who it is for",
+        "applications": "Landowners who want to earn income from unused land or sell it; farmers and agribusinesses looking for land to rent or lease; businesses and developers searching for commercial or industrial plots; individual buyers and investors looking for land to own."
+      },
+      "reportLabel": "Full platform guide",
+      "report": [
+        {
+          "heading": "OVERVIEW",
+          "paragraphs": [
+            "Property Hub is an online marketplace dedicated to land. It lets owners list plots for rent, lease or sale, and lets individuals and businesses search, compare and contact owners in one place."
+          ]
+        },
+        {
+          "heading": "PROBLEMS IT SOLVES",
+          "list": [
+            "Owners struggle to reach serious buyers or tenants for unused land.",
+            "Seekers cannot easily find land by location, size, price or purpose.",
+            "Information is scattered and often incomplete or outdated.",
+            "Dependence on middlemen increases cost and reduces transparency."
+          ]
+        },
+        {
+          "heading": "GOALS",
+          "list": [
+            "Make listing land quick and simple.",
+            "Make searching fast, with useful filters.",
+            "Build trust through verification and clear details.",
+            "Enable direct, safe communication between both sides."
+          ]
+        },
+        {
+          "heading": "USERS AND ROLES",
+          "table": {
+            "headers": ["Role", "Who they are", "What they can do"],
+            "rows": [
+              ["Landowner / Lister", "Owners or authorised agents of land", "Create and manage listings, upload photos and documents, respond to enquiries, mark listings as rented, leased or sold"],
+              ["Seeker", "Tenants, lessees, buyers, investors", "Search and filter, save favourites, send enquiries, compare plots, schedule visits"],
+              ["Admin", "Property Hub team", "Review listings, verify documents, manage users, handle reports, view analytics"]
+            ]
+          }
+        },
+        {
+          "heading": "LISTING TYPES",
+          "table": {
+            "headers": ["Type", "Meaning", "Typical uses", "Key details shown"],
+            "rows": [
+              ["Rent", "Short-term use for a fixed period, often monthly or seasonal", "Farming season, events, parking, storage, temporary setups", "Rent amount, rent period, minimum duration, deposit"],
+              ["Lease", "Long-term agreement with defined terms, often years", "Agriculture, warehouses, commercial or industrial projects", "Lease term, annual or monthly amount, renewal and escalation terms"],
+              ["Sell", "Full transfer of ownership", "Investment, building, farming, plotting", "Asking price, price per unit area, negotiability, ownership status"]
+            ]
+          }
+        },
+        {
+          "heading": "OVERALL FLOW",
+          "ordered": true,
+          "list": [
+            "Register and log in.",
+            "List or search land.",
+            "Verification and review.",
+            "Enquiry and chat.",
+            "Site visit and negotiation.",
+            "Agreement and closing."
+          ]
+        },
+        {
+          "heading": "FOR LANDOWNERS - LISTING A PLOT",
+          "table": {
+            "headers": ["Step", "What happens"],
+            "rows": [
+              ["1. Sign up", "Create an account with email or phone and verify using a one-time password (OTP)."],
+              ["2. Add listing", "Choose Rent, Lease or Sell and fill in the land details: title, location, size, price, and description."],
+              ["3. Upload media", "Add clear photos, an optional video, and a location pin on the map."],
+              ["4. Upload documents", "Provide ownership proof such as sale deed, land records, or tax receipts, for verification (private to admin)."],
+              ["5. Review", "The admin team checks details and documents. The listing is approved, or sent back with a note on what to fix."],
+              ["6. Go live", "The approved listing appears in search results with a Verified badge where applicable."],
+              ["7. Manage", "Edit price or details, pause or renew the listing, and view enquiries and views."],
+              ["8. Close", "Mark the listing as Rented, Leased or Sold so it is removed from active search."]
+            ]
+          }
+        },
+        {
+          "heading": "FOR SEEKERS - FINDING LAND",
+          "table": {
+            "headers": ["Step", "What happens"],
+            "rows": [
+              ["1. Browse or search", "Enter a location or select a listing type and apply filters."],
+              ["2. Compare", "Open listing pages, view photos and the map, and shortlist plots using Save or Favourite."],
+              ["3. Enquire", "Send a message or request a call back. The owner receives a notification."],
+              ["4. Chat and clarify", "Ask about access roads, water, soil, legal status, or price flexibility."],
+              ["5. Visit", "Schedule a site visit with the owner."],
+              ["6. Finalise", "Agree on terms and complete the agreement and registration through proper legal channels."]
+            ]
+          }
+        },
+        {
+          "heading": "LISTING DETAILS",
+          "paragraphs": [
+            "A good listing gives seekers enough information to decide quickly. The listing form collects the following:"
+          ],
+          "table": {
+            "headers": ["Category", "Fields"],
+            "rows": [
+              ["Basics", "Title, listing type (rent, lease, sell), description, listing date"],
+              ["Location", "State, district, village or area, pincode, map pin, nearby landmarks"],
+              ["Size", "Area with unit (acres, hectares, sq ft, cents, guntas), dimensions, shape"],
+              ["Land type", "Agricultural, residential, commercial, industrial, farmland, barren, and others"],
+              ["Price and terms", "Price or rent, deposit, lease duration, negotiable or fixed, payment terms"],
+              ["Features", "Road access, water source, electricity, fencing, soil type, irrigation, topography"],
+              ["Legal", "Ownership type, document status, any disputes or loans on the land (declared by owner)"],
+              ["Media", "Photos, video, map location, boundary sketch"],
+              ["Contact", "Owner name, preferred contact method, availability for visits"]
+            ]
+          }
+        },
+        {
+          "heading": "SEARCH AND DISCOVERY",
+          "paragraphs": [
+            "Seekers can narrow results using filters and sort the list in the way that suits them.",
+            "Extra discovery tools: map view to see plots geographically, saved searches with alerts when a matching plot is added, and a compare option to view plots side by side."
+          ],
+          "table": {
+            "headers": ["Filter", "Options"],
+            "rows": [
+              ["Listing type", "Rent, Lease, Sell"],
+              ["Location", "State, district, area, or radius around a point on the map"],
+              ["Budget", "Minimum and maximum price or rent"],
+              ["Area", "Minimum and maximum size"],
+              ["Land type", "Agricultural, commercial, residential, industrial"],
+              ["Amenities", "Water, electricity, road access, fencing"],
+              ["Trust", "Verified listings only"],
+              ["Sort by", "Newest, price low to high, price high to low, area, nearest"]
+            ]
+          }
+        },
+        {
+          "heading": "VERIFICATION AND TRUST",
+          "paragraphs": [
+            "Trust is the most important factor in land transactions. Property Hub uses several layers.",
+            "Important: A Verified badge means documents were reviewed on the platform. Buyers and tenants should still do their own legal due diligence, such as a title search and a check of land records, before paying any money."
+          ],
+          "list": [
+            "Account verification: phone and email OTP for every user.",
+            "Document check: admin reviews ownership documents before marking a listing Verified.",
+            "Verified badge: shown only on listings that pass document review.",
+            "Report listing: any user can flag false, duplicate or suspicious listings.",
+            "Duplicate detection: prevents the same plot being posted repeatedly.",
+            "Ratings and reviews (proposed): seekers can rate their experience with an owner after a deal."
+          ]
+        },
+        {
+          "heading": "COMMUNICATION",
+          "list": [
+            "In-platform messaging so personal numbers stay private until both sides agree.",
+            "Call-back requests and optional phone or WhatsApp sharing.",
+            "Notifications by email, SMS or app for new enquiries and replies.",
+            "Site-visit scheduling with date and time confirmation."
+          ]
+        },
+        {
+          "heading": "CLOSING A DEAL",
+          "paragraphs": [
+            "Property Hub helps parties find and connect with each other. The final agreement, payment and registration happen between the parties, ideally with a lawyer and through the proper government registration process."
+          ],
+          "table": {
+            "headers": ["Deal type", "Typical closing steps"],
+            "rows": [
+              ["Rent", "Agree on rent and period, sign a rental agreement, pay deposit and first rent, hand over possession"],
+              ["Lease", "Agree on terms, draft a lease deed, register it as required by local law, pay consideration, hand over possession"],
+              ["Sell", "Verify title and records, agree on price, sign an agreement to sell, pay, execute and register the sale deed, update the land records"]
+            ]
+          }
+        },
+        {
+          "heading": "FEES AND REVENUE MODEL (PROPOSED)",
+          "paragraphs": [
+            "Several options can be combined. The right mix depends on the market and the stage of the business."
+          ],
+          "table": {
+            "headers": ["Model", "How it works", "Best for"],
+            "rows": [
+              ["Free basic listing", "Owners list a limited number of plots for free", "Growing supply and users quickly"],
+              ["Featured listing", "Paid boost to appear at the top of search results", "Owners who want faster responses"],
+              ["Subscription", "Monthly or yearly plan for agents and developers with many listings", "Professional listers"],
+              ["Verification fee", "One-time fee for document verification and the Verified badge", "Building trust"],
+              ["Success commission", "Small percentage when a deal closes through the platform", "Higher-value sales"],
+              ["Advertising", "Banner spots for surveyors, legal services, fencing and similar services", "Extra income"]
+            ]
+          }
+        },
+        {
+          "heading": "ADMIN PANEL",
+          "paragraphs": [
+            "The admin dashboard lets the Property Hub team run the platform smoothly:"
+          ],
+          "list": [
+            "Approve, reject, or request changes on new listings.",
+            "Review ownership documents and assign Verified status.",
+            "Manage users: suspend or remove fraudulent accounts.",
+            "Handle reports and complaints.",
+            "Manage categories, locations and filter options.",
+            "View analytics: visits, listings by type, enquiries, conversions, and revenue.",
+            "Send announcements and manage featured placements."
+          ]
+        },
+        {
+          "heading": "SECURITY AND PRIVACY",
+          "list": [
+            "Encrypted connection (HTTPS) across the site.",
+            "Passwords stored securely using hashing, never in plain text.",
+            "Ownership documents visible only to the user and admin reviewers.",
+            "Contact details shared only with user consent.",
+            "Spam and bot protection on sign-up and enquiry forms.",
+            "Clear privacy policy and terms of use, with data handled according to applicable data protection law."
+          ]
+        },
+        {
+          "heading": "TECHNOLOGY OVERVIEW (PROPOSED)",
+          "table": {
+            "headers": ["Layer", "Purpose", "Example options"],
+            "rows": [
+              ["Front end", "Pages, search, listing forms, responsive design", "HTML, CSS, JavaScript, React"],
+              ["Back end", "Business logic, user accounts, listing management", "Node.js, Python (Django or Flask), PHP"],
+              ["Database", "Users, listings, enquiries, messages", "PostgreSQL, MySQL, MongoDB"],
+              ["File storage", "Photos, videos, documents", "Cloud object storage"],
+              ["Maps", "Location pin, map view, nearby search", "Google Maps, OpenStreetMap"],
+              ["Messaging", "OTP, notifications", "SMS and email services"],
+              ["Hosting", "Making the site available online", "Cloud hosting with backups"]
+            ]
+          }
+        },
+        {
+          "heading": "ROADMAP",
+          "table": {
+            "headers": ["Phase", "Focus", "Key items"],
+            "rows": [
+              ["Phase 1: Launch", "Core marketplace", "Accounts, listings for rent, lease and sale, search and filters, enquiries, admin approval"],
+              ["Phase 2: Trust", "Safety and quality", "Document verification, Verified badge, reporting, reviews"],
+              ["Phase 3: Growth", "More users and revenue", "Featured listings, subscriptions, saved search alerts, mobile app"],
+              ["Phase 4: Expand", "Full service", "Legal and survey partner network, e-agreements, regional language support, analytics for owners"]
+            ]
+          }
+        },
+        {
+          "heading": "FAQ - WHO CAN LIST LAND?",
+          "paragraphs": ["The owner or an authorised representative with proof of authority."]
+        },
+        {
+          "heading": "FAQ - IS IT FREE TO BROWSE?",
+          "paragraphs": ["Yes. Browsing and sending enquiries is free for seekers."]
+        },
+        {
+          "heading": "FAQ - WHAT DOES THE VERIFIED BADGE MEAN?",
+          "paragraphs": ["The owner's documents were reviewed by the Property Hub team. It is not a legal guarantee."]
+        },
+        {
+          "heading": "FAQ - CAN I LIST THE SAME LAND FOR BOTH RENT AND SALE?",
+          "paragraphs": ["Yes, as separate listings, as long as the details are clear."]
+        },
+        {
+          "heading": "FAQ - DOES PROPERTY HUB HANDLE THE PAYMENT?",
+          "paragraphs": ["In the base version, no. Parties settle directly. Escrow could be added later."]
+        },
+        {
+          "heading": "FAQ - WHAT IF I SEE A FAKE LISTING?",
+          "paragraphs": ["Use the Report button. The admin team reviews it and removes it if it breaks the rules."]
+        },
+        {
+          "heading": "BEFORE LISTING LAND (OWNERS)",
+          "list": [
+            "Keep ownership documents ready and clear of disputes.",
+            "Take good photos in daylight, showing boundaries and access.",
+            "Know the exact area and the unit used in your records.",
+            "Decide your price or rent range and whether it is negotiable."
+          ]
+        },
+        {
+          "heading": "BEFORE TAKING LAND (SEEKERS)",
+          "list": [
+            "Visit the site in person and check boundaries.",
+            "Verify the title and records with the local authority or a lawyer.",
+            "Check for loans, disputes or restrictions on the land.",
+            "Confirm permitted land use for your purpose.",
+            "Never pay large amounts before verification and a written agreement."
+          ]
+        },
+        {
+          "heading": "SOURCE CODE AND DISCLAIMER",
+          "paragraphs": [
+            "Live site: https://propertyhub-i42pbyogi-sa-01a3.vercel.app/ — open it with the button below.",
+            "Marketplace code: https://github.com/Sheshu729/propertyhub-marketplace (React, Express and tRPC with listings, photo uploads, search and filters, favorites, inquiries and auth).",
+            "This guide is for general information and does not constitute legal advice. Land laws, registration rules and taxes differ by region and land type. Consult a qualified lawyer for any transaction."
+          ]
+        }
+      ]
     }
   ]
 }

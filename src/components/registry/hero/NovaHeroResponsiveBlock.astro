@@ -66,14 +66,14 @@ const stats = props.stats ?? fallback?.stats ?? [];
               {secondaryCTA && <Button href={secondaryCTA.href} variant="outline" size="lg" class="min-h-11 w-full font-semibold tracking-normal sm:w-auto md:text-[clamp(1rem,1.15vw,1.2rem)]">{secondaryCTA.label}</Button>}
             </div>
           </div>
-          <div class="grid grid-cols-3 items-center gap-x-3 gap-y-4 pt-6 text-[color-mix(in_oklab,var(--color-on-surface)_40%,var(--color-surface))] md:gap-x-2 md:pt-6 lg:flex lg:w-full lg:flex-nowrap lg:justify-between lg:gap-x-4 lg:gap-y-3 lg:pt-4" data-motion="fade" style="--motion-delay: 480ms">
-            <Text tag="span" variant="feature-body-sm" class="text-[0.68rem] font-medium tracking-[0.06em] opacity-[0.78] md:text-[0.72rem] lg:text-[clamp(0.8rem,0.9vw,1rem)]">{trustedBy}</Text>
+          <div class="grid grid-cols-3 items-center gap-x-3 gap-y-4 pt-6 text-brand-dark md:gap-x-2 md:pt-6 lg:flex lg:w-full lg:flex-nowrap lg:justify-between lg:gap-x-4 lg:gap-y-3 lg:pt-4" data-motion="fade" style="--motion-delay: 480ms">
+            <Text tag="span" variant="feature-body-sm" class="text-[0.8rem] font-semibold tracking-[0.06em] text-brand-dark/70 opacity-100 md:text-[0.85rem] lg:text-[clamp(0.9rem,1vw,1.05rem)]">{trustedBy}</Text>
             {trustItems.map((item, index) => (
               <Text
                 tag="span"
                 variant="feature-body-sm"
                 class:list={[
-                  "font-heading text-[0.78rem] font-semibold tracking-[0.04em] opacity-[0.72] md:text-[0.88rem] lg:text-[clamp(1rem,1.1vw,1.15rem)]",
+                  "font-heading text-[0.85rem] font-bold tracking-[0.04em] text-brand-dark opacity-100 md:text-[0.95rem] lg:text-[clamp(1.05rem,1.15vw,1.2rem)]",
                   index === 1 && "tracking-[0.12em]",
                   index === 3 && "tracking-[0.08em]",
                 ]}

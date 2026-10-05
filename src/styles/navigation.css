@@ -6,8 +6,7 @@
 @layer components {
   :root {
     --ui-nav-anim-dur: 460ms;
-    --ui-nav-anim-dur-fast: 240ms;
-    /* Easing z referencyjnej animacji (Gsap "main" 0.65, 0.01, 0.05, 0.99):
+    --ui-nav-anim-dur-fast: 240ms;    /* Easing z referencyjnej animacji (Gsap "main" 0.65, 0.01, 0.05, 0.99):
        a decisive start and a long deceleration, the nature of a deck of cards*/
     --ui-nav-anim-ease: cubic-bezier(0.65, 0.01, 0.05, 0.99);
     /* Deck Layers (Curtain) Delays*/
@@ -619,5 +618,20 @@
     .ui-nav-drawer__sub {
       transition: none;
     }
+  }
+
+  /* ─── Header CTA on pure-black nav: accent fill so the button
+     stays visible (black-on-black would disappear) ───────────── */
+  header[data-site-header] .ui-button-primary,
+  header[data-site-header] .ui-nav-cta.ui-button {
+    background-color: var(--color-brand-accent);
+    color: var(--color-brand-dark);
+    border-color: transparent;
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.6);
+  }
+
+  header[data-site-header] .ui-button-primary::after,
+  header[data-site-header] .ui-nav-cta.ui-button::after {
+    background: var(--color-brand-light);
   }
 }
