@@ -16,9 +16,14 @@
     --motion-stagger-word: 55ms;
     --motion-rule-duration: 780ms;
     --motion-rule-delay: 140ms;
+    --scroll-depth-max: 34px;
   }
 
-  /* The ready flag is added before paint. Without it, content stays visible if JavaScript fails. */
+  /* The ready flag is added before paint. Without it, content stays visible if JavaScript fails.
+
+     Reveal start state. The scroll-linked offset is added to the travel
+     distance so a depth element settles from wherever it currently sits on
+     screen rather than snapping to a fixed line first. */
   html[data-motion-ready] [data-motion="fade"],
   html[data-motion-ready] [data-motion="viewport"],
   html[data-motion-ready] [data-motion-sequence="fade"] > *,
@@ -26,7 +31,7 @@
   html[data-motion-ready] [data-motion-auto-target] {
     opacity: 0;
     filter: blur(var(--motion-blur));
-    translate: 0 var(--motion-distance);
+    translate: 0 calc(var(--motion-distance) + var(--scroll-depth-y, 0px));
     transition:
       opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
@@ -46,7 +51,7 @@
   html[data-motion-ready] [data-motion-auto-target][data-motion-visible] {
     opacity: 1;
     filter: blur(0);
-    translate: 0 0;
+    translate: 0 var(--scroll-depth-y, 0px);
   }
 
   html[data-motion-ready] [data-motion-sequence="fade"] > *,
@@ -125,6 +130,16 @@
     translate: 0 0;
   }
 
+  /* A masked word tracks its own container's depth, so the curtain stays
+     aligned with the line it belongs to while that line parallaxes. */
+  html[data-motion-ready] [data-scroll-depth] [data-motion-profile="mask"] > * {
+    translate: 0 calc(110% + var(--scroll-depth-y, 0px));
+  }
+
+  html[data-motion-ready] [data-scroll-depth][data-motion-visible] [data-motion-profile="mask"] > * {
+    translate: 0 var(--scroll-depth-y, 0px);
+  }
+
   /* Hairline that draws itself once its block has entered the viewport.
      Placed inside an already-revealed element, so it needs no observer of
      its own. The collapsed state is scoped to a *pending* parent on purpose:
@@ -151,11 +166,18 @@
     transition: none;
   }
 
+  /* Skip opts out of the reveal, not out of depth. Without this the hero
+     headline (which skips so its words can curtain) would lose its parallax
+     the moment it was marked skip. */
+  html[data-motion-ready] [data-motion-skip][data-scroll-depth] {
+    translate: 0 var(--scroll-depth-y, 0px);
+  }
+
   /* Interactive cards keep the reveal transition and restore their hover contract after entering. */
   html[data-motion-ready] .ui-card-interactive[data-motion-visible] {
     opacity: 1;
     filter: blur(0);
-    translate: 0 0;
+    translate: 0 var(--scroll-depth-y, 0px);
     transition:
       opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
@@ -165,6 +187,40 @@
       border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
       background-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
       color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms;
+  }
+
+  /* Depth runs continuously, so a card carrying it cannot carry the reveal's
+     transition on `translate` — it would ease every scroll frame and lag the
+     pointer. Opacity and blur keep the reveal; translate tracks scroll 1:1. */
+  html[data-motion-ready] [data-scroll-depth][data-motion-visible],
+  html[data-motion-ready] [data-scroll-depth] {
+    transition:
+      opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      scale var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      transform 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      background-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms !important;
+  }
+
+  /* ─── Scroll-linked depth ──────────────────────────────────────────
+     Why depth is folded into the reveal's own `translate` rather than
+     declared as a separate rule: both write the same property, so a
+     standalone rule would win or lose by source order and break the reveal's
+     start state. Composing here means one property with two independent
+     contributions, and `transform` stays free for hover lifts.
+
+     --scroll-depth-y is written per frame by public/js/scroll-depth.js and is
+     already clamped to --scroll-depth-max there, so a fast flick cannot throw
+     an element far off its layout position. */
+  html[data-motion-ready] {
+    --scroll-depth-y: 0px;
+  }
+
+  html[data-motion-ready] [data-scroll-depth] {
+    will-change: translate;
   }
 
   html[data-motion-disabled] *,

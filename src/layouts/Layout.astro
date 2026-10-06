@@ -343,6 +343,9 @@ const mainPaddingStyle = fullBleedTop
 
 		{/* The motion engine owns all reveal timing and reinitializes after View Transitions. */}
 		{clientRuntime && <script is:inline data-astro-rerun src="/js/motion.js" defer></script>}
+		{/* Scroll-linked depth is a separate engine: it runs continuously in both
+		     directions for the whole session, while motion.js stays observer-only. */}
+		{clientRuntime && <script is:inline data-astro-rerun src="/js/scroll-depth.js" defer></script>}
 		<!-- Fix page "sliding": global scroll-behavior:smooth (core.css) causes
 		     View Transition to ANIMATE scroll to top instead of jumping after
 		     inserting new page. We disable smooth only during transition and

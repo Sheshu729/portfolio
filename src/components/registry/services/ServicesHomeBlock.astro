@@ -37,7 +37,7 @@ const items = props.items ?? jsonData.items;
     </div>
     {/* Why: cards cascade in one by one. ui-card-interactive keeps its hover
         contract after entering because motion.css restores it on reveal. */}
-    <div class="nova-services-grid" data-motion-sequence="viewport" data-motion-profile="soft">
+    <div class="nova-services-grid" data-motion-sequence="viewport" data-motion-profile="soft" data-scroll-depth="0.05">
       {items.map((item) => (
         <article class="nova-service-card ui-card-interactive group cursor-pointer transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out hover:border-brand-accent hover:bg-brand-accent/10 motion-reduce:transition-none">
           <div class="nova-service-icon transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark motion-reduce:transition-none" aria-hidden="true">
