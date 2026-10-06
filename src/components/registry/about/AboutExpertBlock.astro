@@ -58,10 +58,17 @@ const resumeDownloadLabel = t.resume?.downloadLabel ?? "";
       <div class="lc-line-deco pointer-events-none absolute right-8 top-8 hidden h-24 w-24 lg:block" aria-hidden="true"></div>
 
       <div class="px-8 py-14 sm:px-12 sm:py-20 lg:px-16 lg:py-24">
-        <div class="mx-auto w-full max-w-5xl">
-          <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">{t.eyebrow}</Text>
-          <Heading tag={headingTag} variant="section-heading-lg" class="mt-5 !font-extrabold">{t.name}</Heading>
-          <Text variant="lead" tag="p" class="mt-2 !text-sm !font-extrabold !text-brand-primary">{t.role}</Text>
+        {/* Why: an explicit sequence staggers the identity block, the two
+            columns and the profile links, so the card assembles instead of
+            appearing whole. */}
+        <div class="mx-auto w-full max-w-5xl" data-motion-sequence="viewport" data-motion-profile="soft">
+          <div>
+            <Text variant="accent-label" tag="p" class="!text-[0.76rem] !font-extrabold !tracking-[0.26em] !text-brand-primary">
+              <span data-motion-rule class="about-rule" aria-hidden="true"></span>{t.eyebrow}
+            </Text>
+            <Heading tag={headingTag} variant="section-heading-lg" class="mt-5 !font-extrabold">{t.name}</Heading>
+            <Text variant="lead" tag="p" class="mt-2 !text-sm !font-extrabold !text-brand-primary">{t.role}</Text>
+          </div>
           {bio.length > 0 && (
             <div class="mt-6 max-w-3xl space-y-3">
               {bio.map((paragraph) => (
@@ -71,7 +78,7 @@ const resumeDownloadLabel = t.resume?.downloadLabel ?? "";
           )}
 
           <div class="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-14">
-            <figure class="overflow-hidden rounded-md border border-brand-dark/10">
+            <figure class="about-figure overflow-hidden rounded-md border border-brand-dark/10">
               <SmartImage
                 src={t.image}
                 alt={t.imageAlt}
@@ -158,6 +165,34 @@ const resumeDownloadLabel = t.resume?.downloadLabel ?? "";
 </Section>
 
 <style>
+  /* Accent hairline that draws in with the eyebrow it introduces. */
+  .about-rule {
+    display: block;
+    width: clamp(2.5rem, 5vw, 3.5rem);
+    height: 2px;
+    margin-bottom: 0.75rem;
+    border-radius: 999px;
+    background: var(--color-brand-accent);
+  }
+
+  /* The workspace photo settles rather than slides, matching the hero
+     portrait so large media reads the same way across the page. */
+  .about-figure img {
+    scale: 1.02;
+    transition: scale 900ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--motion-delay, 0ms) + 80ms);
+  }
+
+  .about-figure[data-motion-visible] img {
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-figure img {
+      scale: none;
+      transition: none;
+    }
+  }
+
   /* Why: L-shape decoration from original (vertical line with horizontal
      curl), client outline color replaced with brand-dark at low alpha. */
   .lc-line-deco {

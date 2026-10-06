@@ -48,7 +48,7 @@ const fixedShellClass =
 			: `absolute z-[100] bg-transparent ${staticTextClass}`,
 	]}
 >
-	<div class="ui-container">
+<div class="ui-container">
 		<div class="flex items-center justify-between gap-2 py-3 sm:gap-4 sm:py-4 lg:gap-6 lg:py-5" data-nav-inner>
 			<nav class="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
 				{headerData.menu.map((item) => (
@@ -58,7 +58,7 @@ const fixedShellClass =
 				))}
 			</nav>
 
-			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
+			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3 sm:gap-4 lg:gap-6">
 				<!-- Dlaczego: globalny wzorzec przycisku (ui-button ui-button-primary ui-nav-cta)
          instead of raw classes. Gives consistent hover (text swap + color slide) and dimensions
 				     z core.css. Wzorzec z NavbarMainCentered (layout Centered). -->
@@ -72,6 +72,10 @@ const fixedShellClass =
 			</div>
 		</div>
 	</div>
+	<!-- Why: reading progress as a single hairline on the bar's bottom edge.
+	     Scale is driven from the same rAF-throttled scroll handler as the
+	     rest of the header, so it costs no extra listener and no layout. -->
+	<span class="ui-nav-progress" data-nav-progress aria-hidden="true"></span>
 </header>
 
 {!isSolid && (
@@ -105,10 +109,34 @@ const fixedShellClass =
 			</div>
 		</div>
 	</div>
+	<span class="ui-nav-progress" data-nav-progress aria-hidden="true"></span>
 </header>
 )}
 
 <style>
+	/* ─── Reading progress ───────────────────────────────────────────
+	   Why: a single accent hairline on the bar's bottom edge is the least
+	   intrusive way to answer "how far down am I" on a one-page portfolio.
+	   Only `transform: scaleX` is animated, so it stays on the compositor
+	   and never triggers layout. The value is written by navbar.js from the
+	   existing rAF-throttled scroll handler — no extra listener. */
+	.ui-nav-progress {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		display: block;
+		height: 2px;
+		width: 100%;
+		transform-origin: left center;
+		transform: scaleX(var(--nav-progress, 0));
+		background: var(--color-brand-accent);
+		pointer-events: none;
+	}
+
+	/* No transition on purpose: navbar.js already writes scaleX once per
+	   animation frame, so easing it would only add lag. Under reduced motion
+	   the value is identical, so the bar is correct without a special case. */
+
 	/* Why: without an explicit transition, the bar would jump out instead
     drive in. We animate translate (entering from the top) and opacity (appearing),
     using the translate property from Tailwind v4 instead of transform to

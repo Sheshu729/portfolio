@@ -41,12 +41,20 @@ const normalizeIconName = (icon?: string) =>
 
 <Section id="education" class:list={[className]} tone="base">
   <Container>
-    <SectionHeader title={title} description={description} titleTag={headingTag} align="center" />
+    {/* Why: the section now owns explicit sequences, which switches off the
+        engine's auto-reveal for the whole section. The header gets its own
+        target so nothing is left unanimated. */}
+    <div data-motion="viewport">
+      <SectionHeader title={title} description={description} titleTag={headingTag} align="center" />
+    </div>
 
     <div id="process-timeline" class="relative mx-auto mt-16 max-w-4xl">
       <div class="absolute left-6 top-3 h-[calc(100%-1.5rem)] w-0.5 bg-brand-primary/10 rounded-full lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true"></div>
 
-      <ol class="space-y-8 lg:space-y-20" id="timeline-steps">
+      {/* Why: an explicit viewport sequence staggers the steps. The progress
+          bar stays out: the timeline is static content, and a scroll-driven
+          bar competes with the reveal for attention. */}
+      <ol class="space-y-8 lg:space-y-20" id="timeline-steps" data-motion-sequence="viewport" data-motion-profile="soft">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
           const stepNum = (index + 1).toString().padStart(2, "0");
@@ -56,6 +64,8 @@ const normalizeIconName = (icon?: string) =>
               class:list={[isEven ? "lg:flex-row" : "lg:flex-row-reverse"]}
             >
               <div class="flex shrink-0 items-start justify-center relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+                {/* The dot marks arrival, so it settles in with the step
+                    instead of sliding in with it. */}
                 <div class="timeline-dot relative flex size-11 items-center justify-center rounded-full border-2 border-brand-primary/20 bg-brand-light text-brand-primary">
                   <Icon name={normalizeIconName(item.icon)} class="text-xl" />
                 </div>
@@ -84,3 +94,24 @@ const normalizeIconName = (icon?: string) =>
     </div>
   </Container>
 </Section>
+
+<style>
+  /* The step dot is the anchor of each entry: it arrives first and settles,
+     which reads as the timeline being marked off rather than more text
+     sliding in. transform keeps it clear of the reveal's translate. */
+  .timeline-step .timeline-dot {
+    scale: 0.6;
+    transition: scale 520ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--motion-delay, 0ms) - 120ms);
+  }
+
+  .timeline-step[data-motion-visible] .timeline-dot {
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-step .timeline-dot {
+      scale: none;
+      transition: none;
+    }
+  }
+</style>

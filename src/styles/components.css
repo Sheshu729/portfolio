@@ -205,6 +205,19 @@
     transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  /* Keyboard parity: the underline is hover-only feedback, so focus-visible
+     needs the same treatment or keyboard users lose the affordance. */
+  .ui-nav-bar-link:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 6px;
+    border-radius: 2px;
+  }
+
+  .ui-nav-bar-link:focus-visible::after {
+    left: 0;
+    width: 100%;
+  }
+
   @media (min-width: 1024px) {
     .ui-nav-bar-link {
       font-size: 1rem;
@@ -232,6 +245,21 @@
   .ui-nav-bar-link:hover::after {
     left: 0;
     width: 100%;
+  }
+
+  /* Why: reduced motion removes the transition, which would leave the accent
+     underline sitting at zero width forever. Setting the end state directly
+     keeps the affordance without the wipe. */
+  @media (prefers-reduced-motion: reduce) {
+    .ui-nav-bar-link::after {
+      transition: none;
+    }
+
+    .ui-nav-bar-link:hover::after,
+    .ui-nav-bar-link:focus-visible::after {
+      left: 0;
+      width: 100%;
+    }
   }
 
   /** CTA only in the header - compact, larger on the desktop*/
@@ -317,6 +345,23 @@
     border-radius: var(--ui-button-radius, 0.75rem);
     transform: translateY(0);
     z-index: 1;
+  }
+
+  /* Why: press feedback has to be instant to read as "pressed" rather than
+     as a second, slower animation. transform keeps it clear of the reveal's
+     translate, and the ring transition is scoped to focus-visible so pointer
+     users never pay for it. */
+  .ui-button:not([aria-disabled="true"]):active {
+    transform: translateY(1px) scale(0.985);
+    transition-duration: 90ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-button,
+    .ui-button:not([aria-disabled="true"]):active {
+      transform: none;
+      transition: none;
+    }
   }
 
   /* Interaction Effects Base (Pseudo-element for Slide) */

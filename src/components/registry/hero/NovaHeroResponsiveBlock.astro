@@ -39,6 +39,15 @@ const trustItems = props.trustItems ?? fallback?.trustItems ?? [];
 const image = props.image ?? fallback?.image;
 const imageAlt = props.imageAlt ?? fallback?.imageAlt ?? "";
 const stats = props.stats ?? fallback?.stats ?? [];
+
+// Why: the hero headline is the one place a curtain reveal earns its keep, so
+// the copy is split into words that mask-rises in sequence. Splitting happens
+// here (build time) rather than in JS: the markup is identical without
+// scripting, screen readers still read one continuous sentence, and the
+// existing reveal engine only has to toggle a single attribute.
+const eyebrowWords = String(eyebrow ?? "").split(/\s+/).filter(Boolean);
+const headingWords = String(heading ?? "").split(/\s+/).filter(Boolean);
+const accentWords = String(headingAccent ?? "").split(/\s+/).filter(Boolean);
 ---
 
 <Section
@@ -52,13 +61,26 @@ const stats = props.stats ?? fallback?.stats ?? [];
   <Container class="w-full max-w-none px-0">
     <div class="relative overflow-hidden rounded-t-xl">
       <div class="grid min-w-0 grid-cols-1 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-cols-2">
-        <div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(1.5rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]">
-          <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,4vw,2rem)] md:gap-5 lg:gap-[clamp(1.25rem,2vw,2rem)]" data-motion-sequence="fade">
-            <Heading tag="h1" variant="hero" class="max-w-[42rem] font-bold leading-[0.96] tracking-[-0.065em] text-[clamp(2.5rem,10vw,3.75rem)] md:max-w-[42rem] md:text-[clamp(3rem,4.4vw,4.75rem)] lg:text-[clamp(3rem,4.4vw,4.75rem)]">
-              {eyebrow}
+<div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(1.5rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]">
+          <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,4vw,2rem)] md:gap-5 lg:gap-[clamp(1.25rem,2vw,2rem)]" data-motion-sequence="fade" data-motion-profile="hero">
+            {/* Why: each headline word is its own clip window with a sliding
+                layer inside, so the line reads as a curtain rather than a
+                fade. The words stay inline, so the sentence still wraps and
+                reads normally with scripting off. */}
+            {/* data-motion-skip: the words curtain in on their own, so the
+                line itself must not also fade. */}
+            <Heading tag="h1" data-motion-skip variant="hero" class="nova-hero__title max-w-[42rem] font-bold leading-[0.96] tracking-[-0.065em] text-[clamp(2.5rem,10vw,3.75rem)] md:max-w-[42rem] md:text-[clamp(3rem,4.4vw,4.75rem)] lg:text-[clamp(3rem,4.4vw,4.75rem)]">
+              {eyebrowWords.map((word, index) => (
+                <Fragment><span class="nova-hero__word" data-motion-profile="mask"><span>{word}</span></span>{index < eyebrowWords.length - 1 && ' '}</Fragment>
+              ))}
             </Heading>
             <Text tag="p" variant="lead" class="max-w-[38rem] font-semibold leading-snug text-brand-dark/75 md:max-w-[25rem] md:text-[clamp(1rem,1.45vw,1.2rem)] lg:max-w-[38rem] lg:text-[clamp(1.1rem,1.45vw,1.4rem)]">
-              {heading}{' '}<span class="text-brand-accent">{headingAccent}</span>
+              {headingWords.map((word) => (
+                <Fragment><span class="nova-hero__word" data-motion-profile="mask"><span>{word}</span></span>{' '}</Fragment>
+              ))}
+              {accentWords.map((word) => (
+                <span class="nova-hero__word text-brand-accent" data-motion-profile="mask"><span>{word}</span></span>
+              ))}
             </Text>
             <Text variant="lead" class="max-w-[38rem] md:max-w-[25rem] md:text-[clamp(1rem,1.45vw,1.2rem)] lg:max-w-[38rem] lg:text-[clamp(1.1rem,1.45vw,1.4rem)]">{description}</Text>
             <div class="flex flex-wrap items-center gap-3">
@@ -66,7 +88,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
               {secondaryCTA && <Button href={secondaryCTA.href} variant="outline" size="lg" class="min-h-11 w-full font-semibold tracking-normal sm:w-auto md:text-[clamp(1rem,1.15vw,1.2rem)]">{secondaryCTA.label}</Button>}
             </div>
           </div>
-          <div class="grid grid-cols-3 items-center gap-x-3 gap-y-4 pt-6 text-brand-dark md:gap-x-2 md:pt-6 lg:flex lg:w-full lg:flex-nowrap lg:justify-between lg:gap-x-4 lg:gap-y-3 lg:pt-4" data-motion="fade" style="--motion-delay: 480ms">
+          <div class="grid grid-cols-3 items-center gap-x-3 gap-y-4 pt-6 text-brand-dark md:gap-x-2 md:pt-6 lg:flex lg:w-full lg:flex-row lg:justify-between lg:gap-x-4 lg:gap-y-3 lg:pt-4" data-motion="fade" style="--motion-delay: 620ms">
             <Text tag="span" variant="feature-body-sm" class="text-[0.8rem] font-semibold tracking-[0.06em] text-brand-dark/70 opacity-100 md:text-[0.85rem] lg:text-[clamp(0.9rem,1vw,1.05rem)]">{trustedBy}</Text>
             {trustItems.map((item, index) => (
               <Text
@@ -82,7 +104,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
           </div>
         </div>
 
-        <div class="relative min-w-0 mb-4 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="fade" style="--motion-delay: 120ms">
+        <div class="relative min-w-0 mb-4 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="viewport" data-motion-profile="media" data-motion-media style="--motion-delay: 200ms">
           <svg class="pointer-events-none absolute inset-0 z-0 size-full overflow-hidden opacity-0 md:opacity-100" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <clipPath id="nova-responsive-photo-blob" clipPathUnits="objectBoundingBox">
@@ -99,7 +121,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
       <div class="hero-stats grid grid-cols-2 rounded-t-[var(--rounded-lg)] bg-black px-[clamp(1rem,3vw,2.5rem)] py-[clamp(2rem,3vw,2.5rem)] text-brand-light md:grid-cols-4" data-motion-sequence="viewport" data-motion-profile="soft">
         {stats.map((stat) => (
           <div class="nova-stat relative flex flex-col items-center gap-[0.35rem] px-[clamp(0.75rem,2.5vw,2rem)] py-2 text-center md:py-0">
-            <Heading tag="strong" variant="section-heading-lg" class="text-white">{stat.value}</Heading>
+            <Heading tag="strong" variant="section-heading-lg" class="nova-stat__value text-white">{stat.value}</Heading>
             <Text tag="span" variant="feature-body-sm" class="text-inherit">{stat.label}</Text>
           </div>
         ))}
@@ -109,8 +131,56 @@ const stats = props.stats ?? fallback?.stats ?? [];
 </Section>
 
 <style>
+  /* ── Curtain words ────────────────────────────────────────────────
+     Why: overflow clip on the wrapper and a translate on the inner layer
+     turns the generic reveal into a mask reveal. descender-safe padding
+     keeps the bottom of g/y/p from being shaved by the clip box, and the
+     negative margin gives that padding back so line rhythm is unchanged. */
+  .nova-hero__word {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+    vertical-align: bottom;
+  }
+
+  .nova-hero__word > span {
+    display: inline-block;
+  }
+
+    /* ── Portrait ─────────────────────────────────────────────────────
+     The blob clip is already the focal shape; a slow, small settle on top
+     of the reveal is enough. No blur is composited here. */
+  :global(.nova-responsive-hero) figure img {
+    transform: scale(1.015);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.nova-responsive-hero) figure img {
+      transform: none;
+    }
+  }
+
   :global(.nova-responsive-hero) .nova-stat {
     position: relative;
+  }
+
+  /* Stat values settle from a touch small. Reads as weight landing rather
+     than another slide, and it is the same scale the portrait uses. */
+  :global(.nova-responsive-hero) .nova-stat__value {
+    scale: 0.86;
+    transition: scale 700ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--motion-delay, 0ms) + 90ms);
+  }
+
+  :global(.nova-responsive-hero) .nova-stat[data-motion-visible] .nova-stat__value {
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.nova-responsive-hero) .nova-stat__value {
+      scale: none;
+      transition: none;
+    }
   }
 
   @media (max-width: 767px) {

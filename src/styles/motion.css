@@ -7,6 +7,15 @@
     --motion-stagger: 90ms;
     --motion-blur: 0px;
     --motion-distance: 1.5rem;
+    /* Extended vocabulary. The five tokens above stay the contract for every
+       reveal; the ones below only re-tune a profile, so nothing else moves. */
+    --motion-duration-hero: 900ms;
+    --motion-distance-hero: 2.25rem;
+    --motion-stagger-hero: 70ms;
+    --motion-duration-media: 1000ms;
+    --motion-stagger-word: 55ms;
+    --motion-rule-duration: 780ms;
+    --motion-rule-delay: 140ms;
   }
 
   /* The ready flag is added before paint. Without it, content stays visible if JavaScript fails. */
@@ -22,6 +31,7 @@
       opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       translate var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      scale var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       transform 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
       border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
@@ -56,9 +66,82 @@
     --motion-distance: 1rem;
   }
 
+  /* Hero profile: the one place allowed to travel further and last longer,
+     because it plays once on load and carries the first impression. */
+  html[data-motion-ready] [data-motion-profile="hero"] > * {
+    --motion-duration: var(--motion-duration-hero);
+    --motion-distance: var(--motion-distance-hero);
+    --motion-stagger: var(--motion-stagger-hero);
+  }
+
+  /* Media profile: large surfaces settle with a scale instead of a slide.
+     Paired with [data-motion-media] below so no blur is composited. */
+  html[data-motion-ready] [data-motion-profile="media"] {
+    --motion-duration: var(--motion-duration-media);
+    --motion-distance: 0px;
+    scale: 1.035;
+  }
+
+  html[data-motion-ready] [data-motion-profile="media"][data-motion-visible] {
+    scale: 1;
+  }
+
   /* Large media surfaces fade without blur to avoid unnecessary GPU work. */
   html[data-motion-ready] [data-motion-media] {
     filter: none;
+  }
+
+  /* Mask profile: the element is only a clip window, its child does the
+     moving. Keeps headline reveals reading as a curtain, not a fade, while
+     reusing the same observer and the same --motion-delay cascade. */
+  html[data-motion-ready] [data-motion-profile="mask"],
+  html[data-motion-ready] [data-motion-profile="mask"][data-motion-visible] {
+    opacity: 1;
+    filter: none;
+    translate: none;
+    scale: none;
+    transition: none;
+    /* Word-level cascades read better slightly tighter than block-level. */
+    --motion-stagger: var(--motion-stagger-word);
+  }
+
+  /* A mask is one clip window (a headline word); its child is the layer that
+     slides. Delays add to whatever the mask inherited from its sequence, so a
+     masked headline nested in a staged block still waits its turn. */
+  html[data-motion-ready] [data-motion-profile="mask"] {
+    --motion-shift: var(--motion-delay, 0ms);
+  }
+
+  html[data-motion-ready] [data-motion-profile="mask"] > * {
+    translate: 0 110%;
+    --motion-delay: calc(
+      var(--motion-shift, 0ms) + var(--motion-order, 0) * var(--motion-stagger)
+    );
+    transition: translate var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms);
+  }
+
+  html[data-motion-ready] [data-motion-profile="mask"][data-motion-visible] > *,
+  html[data-motion-ready] [data-motion-visible] [data-motion-profile="mask"] > * {
+    translate: 0 0;
+  }
+
+  /* Hairline that draws itself once its block has entered the viewport.
+     Placed inside an already-revealed element, so it needs no observer of
+     its own. The collapsed state is scoped to a *pending* parent on purpose:
+     a rule that never gets data-motion-visible (no JS, disabled motion, an
+     engine that failed to boot) stays drawn instead of vanishing. */
+  html[data-motion-ready] [data-motion-rule] {
+    transform-origin: left center;
+    transition: scale var(--motion-rule-duration) var(--motion-ease) var(--motion-rule-delay);
+  }
+
+  html[data-motion-ready] [data-motion-auto-target]:not([data-motion-visible]) [data-motion-rule],
+  html[data-motion-ready] [data-motion="fade"]:not([data-motion-visible]) [data-motion-rule],
+  html[data-motion-ready] [data-motion="viewport"]:not([data-motion-visible]) [data-motion-rule],
+  html[data-motion-ready] [data-motion-sequence="fade"] > *:not([data-motion-visible]) [data-motion-rule],
+  html[data-motion-ready] [data-motion-sequence="viewport"] > *:not([data-motion-visible]) [data-motion-rule],
+  html[data-motion-ready] [data-motion-rule][data-motion-rule-pending] {
+    scale: 0 1;
   }
 
   html[data-motion-ready] [data-motion-skip] {
@@ -108,6 +191,23 @@
       opacity: 1 !important;
       filter: none !important;
       translate: none !important;
+      scale: none !important;
+      transition: none !important;
+    }
+
+    /* Profiles that own a second animated property (scale, curtain) reset it
+       here too, otherwise the collapsed state would survive the switch. */
+    [data-motion-profile="mask"] > *,
+    [data-motion-profile="media"] {
+      translate: none !important;
+      scale: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transition: none !important;
+    }
+
+    [data-motion-rule] {
+      scale: none !important;
       transition: none !important;
     }
 

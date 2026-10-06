@@ -12,6 +12,21 @@
   });
   ro.observe(header);
 
+  // ─── Reading progress ───────────────────────────────────────────
+  // Why: one accent hairline showing how much of the page is behind the
+  // reader. Written as a CSS custom property so the easing stays in CSS,
+  // and recomputed inside the rAF-throttled handler below, so it adds no
+  // listener and no extra layout read.
+  var hasProgress = document.querySelector('[data-nav-progress]') !== null;
+  function updateProgress() {
+    if (!hasProgress) return;
+    var doc = document.documentElement;
+    var scrollable = doc.scrollHeight - window.innerHeight;
+    // Guard short pages and zoomed viewports where there is nothing to scroll.
+    var ratio = scrollable > 0 ? Math.min(1, Math.max(0, window.pageYOffset / scrollable)) : 1;
+    doc.style.setProperty('--nav-progress', ratio.toFixed(4));
+  }
+
   // ─── Scroll: static → fixed + glass effect ───────────────────────
   // Why: floating navbar (data-site-header-static) is a transparent
   // overlay on hero; after scrolling we show the fixed bar (is-visible),
@@ -32,6 +47,7 @@
       // immediately when the visitor reverses direction or reaches the top.
       header.classList.toggle('is-nav-hidden', isScrollingDown && currentScrollY > 120);
       lastScrollY = currentScrollY;
+      updateProgress();
       if (fixedHeader) {
         fixedHeader.classList.toggle('is-visible', isScrolled);
         fixedHeader.setAttribute('aria-hidden', isScrolled ? 'false' : 'true');
@@ -140,6 +156,13 @@
   // Positions depend only on viewport width; recalculate after load.
   placeSubCarets();
   window.addEventListener('resize', placeSubCarets);
+
+  // Progress depends on document height and viewport height, both of which
+  // change on resize, and the document height also changes as late-loading
+  // images settle.
+  window.addEventListener('resize', updateProgress);
+  window.addEventListener('load', updateProgress);
+  updateProgress();
 
   // ─── Keyboard: Escape + focus trap ───────────────────────────────
   document.addEventListener('keydown', function (e) {

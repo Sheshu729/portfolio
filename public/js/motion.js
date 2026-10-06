@@ -124,6 +124,20 @@
     element.style.setProperty(auto ? '--motion-auto-order' : '--motion-order', String(index));
     markMedia(element);
     if (auto) element.setAttribute('data-motion-auto-target', '');
+    cascadeMasks(element);
+  }
+
+  // Why: a masked element is only a clip window, so the stagger has to reach
+  // the layer that actually slides. Numbered in document order, which keeps
+  // word cascades reading left to right even when the headline wraps.
+  function cascadeMasks(root) {
+    if (!root.querySelector) return;
+    var masks = root.matches && root.matches('[data-motion-profile="mask"]')
+      ? [root].concat(Array.from(root.querySelectorAll('[data-motion-profile="mask"]')))
+      : Array.from(root.querySelectorAll('[data-motion-profile="mask"]'));
+    for (var index = 0; index < masks.length; index += 1) {
+      masks[index].style.setProperty('--motion-order', String(index));
+    }
   }
 
   function enqueue(element) {

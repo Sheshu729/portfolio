@@ -18,9 +18,12 @@ const items = props.items ?? jsonData.items;
 
 <Section id={props.id ?? (props.locale === "pl" ? "uslugi" : "services")} tone="page" class:list={["services-section", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
-    <div class="nova-services-intro">
+    <div class="nova-services-intro" data-motion-sequence="viewport">
       <div>
-        <Heading tag="h2" variant="section-title">{title}</Heading>
+        {/* Why: the hairline draws in once this heading block is revealed. It
+            sits inside an already-observed element, so the global engine needs
+            no extra target for it. */}
+        <Heading tag="h2" variant="section-title"><span data-motion-rule class="nova-services-rule" aria-hidden="true"></span>{title}</Heading>
       </div>
       <div>
         <Text variant="lead">{description}</Text>
@@ -32,7 +35,9 @@ const items = props.items ?? jsonData.items;
         </a>
       </div>
     </div>
-    <div class="nova-services-grid">
+    {/* Why: cards cascade in one by one. ui-card-interactive keeps its hover
+        contract after entering because motion.css restores it on reveal. */}
+    <div class="nova-services-grid" data-motion-sequence="viewport" data-motion-profile="soft">
       {items.map((item) => (
         <article class="nova-service-card ui-card-interactive group cursor-pointer transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out hover:border-brand-accent hover:bg-brand-accent/10 motion-reduce:transition-none">
           <div class="nova-service-icon transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark motion-reduce:transition-none" aria-hidden="true">
@@ -60,6 +65,16 @@ const items = props.items ?? jsonData.items;
 <style>
   :global(section.services-section) {
     padding-block: clamp(4rem, 7vw, 6.5rem);
+  }
+
+  /* Accent hairline that draws in with the heading it belongs to. */
+  .nova-services-rule {
+    display: block;
+    width: clamp(2.5rem, 5vw, 3.5rem);
+    height: 2px;
+    margin-bottom: clamp(0.85rem, 1.4vw, 1.15rem);
+    border-radius: 999px;
+    background: var(--color-brand-accent);
   }
 
   .nova-services-intro {

@@ -308,10 +308,15 @@
     text-decoration: none;
     opacity: 0;
     translate: 0 1.25rem;
+    /* Why: `transform` carries the press scale and stays independent of
+       `translate`, which the entrance animates. 90ms is deliberate: press
+       feedback has to be instant to read as "pressed", not as a second
+       entrance. */
     transition:
       translate var(--ui-nav-anim-dur-fast) var(--ui-nav-anim-ease),
       opacity 160ms linear,
-      color 150ms ease;
+      color 150ms ease,
+      transform 90ms ease-out;
   }
 
   .ui-nav-drawer-root.is-open .ui-nav-drawer__link,
@@ -323,7 +328,15 @@
         calc(var(--ui-nav-anim-content-lag) + var(--stagger, 0) * var(--ui-nav-anim-stagger)),
       opacity 240ms linear
         calc(var(--ui-nav-anim-content-lag) + var(--stagger, 0) * var(--ui-nav-anim-stagger)),
-      color 150ms ease;
+      color 150ms ease,
+      transform 90ms ease-out;
+  }
+
+  /* Press feedback: these are large tap targets, so the response has to say
+     "this one is being chosen" rather than repeat the entrance. */
+  .ui-nav-drawer__link:active,
+  .ui-nav-drawer__cta:active {
+    transform: scale(0.97);
   }
 
   @media (hover: hover) {
@@ -332,6 +345,8 @@
       color: var(--ui-nav-drawer-link-hover);
     }
   }
+
+  
 
   .ui-nav-drawer__link:focus-visible,
   .ui-nav-drawer__cta:focus-visible {
@@ -536,7 +551,22 @@
     color: inherit;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color 0.2s ease;
+    /* transform carries the press scale; the bars inside animate transform
+       and translate separately, so a scale on the button stays independent. */
+    transition: background-color 0.2s ease, scale 120ms ease-out;
+  }
+
+  /* Why: the bars morph on open/close, so the button itself must not also
+     scale then or the X would be drawn mid-squeeze. Only the closed state
+     gets press feedback. */
+  .ui-nav-menu-toggle:not(.is-open):active {
+    scale: 0.92;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-nav-menu-toggle {
+      transition: background-color 0.2s ease;
+    }
   }
 
   .ui-nav-menu-toggle:hover {
@@ -593,6 +623,13 @@
 
   @media (prefers-reduced-motion: reduce) {
     .ui-nav-drawer-root {
+      transition: none;
+    }
+
+    /* The press scale is a state change, not an animation, so it survives
+       the reduced-motion switch; only its easing is dropped. */
+    .ui-nav-drawer__link,
+    .ui-nav-drawer__cta {
       transition: none;
     }
 
