@@ -61,7 +61,11 @@ const accentWords = String(headingAccent ?? "").split(/\s+/).filter(Boolean);
   <Container class="w-full max-w-none px-0">
     <div class="relative overflow-hidden rounded-t-xl">
       <div class="grid min-w-0 grid-cols-1 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-cols-2">
-<div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(1.5rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]" data-scroll-depth="0.16">
+<div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(1.5rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]">
+          {/* Why no data-scroll-depth on this column: it holds the name, the
+              headline and the description. Parallax on running text makes it
+              drift against the page, so it visibly slides down on the way
+              back up. Text stays locked; only the portrait beside it moves. */}
           <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,4vw,2rem)] md:gap-5 lg:gap-[clamp(1.25rem,2vw,2rem)]" data-motion-sequence="fade" data-motion-profile="hero">
             {/* Why: each headline word is its own clip window with a sliding
                 layer inside, so the line reads as a curtain rather than a
@@ -104,7 +108,7 @@ const accentWords = String(headingAccent ?? "").split(/\s+/).filter(Boolean);
           </div>
         </div>
 
-        <div class="relative min-w-0 mb-4 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="viewport" data-motion-profile="media" data-motion-media data-scroll-depth="-0.1" style="--motion-delay: 200ms">
+        <div class="relative min-w-0 mb-4 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="viewport" data-motion-profile="media" data-motion-media data-scroll-depth="-0.12" style="--motion-delay: 200ms">
           <svg class="pointer-events-none absolute inset-0 z-0 size-full overflow-hidden opacity-0 md:opacity-100" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <clipPath id="nova-responsive-photo-blob" clipPathUnits="objectBoundingBox">

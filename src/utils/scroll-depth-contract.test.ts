@@ -53,9 +53,58 @@ describe('scroll-linked depth contract', () => {
 		expect(styles).toMatch(/\[data-scroll-depth\]\[data-motion-visible\][\s\S]*?color 250ms cubic-bezier\(0\.33, 1, 0\.68, 1\) 0ms !important;/);
 	});
 
-	it('re-initialises across view transitions', () => {
+it('re-initialises across view transitions', () => {
 		expect(depth).toContain("document.addEventListener('astro:before-swap', reset)");
 		expect(depth).toContain("document.addEventListener('astro:after-swap', schedule)");
 		expect(depth).toContain("document.addEventListener('astro:page-load', schedule)");
+	});
+});
+
+describe('scroll-linked depth placement', () => {
+	const hero = read('src/components/registry/hero/NovaHeroResponsiveBlock.astro');
+	const about = read('src/components/registry/about/AboutExpertBlock.astro');
+	const services = read('src/components/registry/services/ServicesHomeBlock.astro');
+	const projects = read('src/components/registry/portfolio/ProjectsBlock.astro');
+	const timeline = read('src/components/registry/process/ProcessTimelineBlock.astro');
+	const footer = read('src/components/registry/shell/NovaFooterBlock.astro');
+
+	it('never puts depth on a container holding running text', () => {
+		// Why: parallax moves an element against the page. On body copy that
+		// reads as the text sliding — it visibly drifts down when the reader
+		// scrolls back up. Depth belongs on media and background layers only.
+		// Counting real attributes (with a value) so a passing mention in a
+		// comment or a media layer elsewhere in the file does not skew it.
+		const attribute = /data-scroll-depth="/g;
+		const count = (source: string) => (source.match(attribute) || []).length;
+
+		const mustHaveNone: Array<[string, string]> = [
+			['about card body', about],
+			['services grid', services],
+			['projects grid', projects],
+			['education timeline', timeline],
+		];
+
+		for (const [label, source] of mustHaveNone) {
+			expect(`${label}: ${count(source)}`).toBe(`${label}: 0`);
+		}
+
+		// The hero keeps exactly one: the portrait. If a second appears, the
+		// text column has picked up parallax again.
+		expect(`hero copy column: ${count(hero)}`).toBe('hero copy column: 1');
+	});
+
+	it('keeps depth on the hero portrait, which is the media layer', () => {
+		expect(hero).toMatch(/data-motion-profile="media"[^>]*data-scroll-depth="-0\.12"/);
+		// The text column must not be the carrier.
+		expect(hero).not.toMatch(/md:pt-10[^>]*data-scroll-depth=/);
+	});
+
+	it('gives the footer photo its own oversized layer with room to drift', () => {
+		// The layer must be taller than the footer, otherwise parallax would
+		// expose an uncovered edge at the top.
+		expect(footer).toMatch(/class="absolute inset-x-0 -top-\[10%\] h-\[120%\][^"]*"[\s\S]*?data-scroll-depth="0\.3"/);
+		// And the photo must no longer be a background on <footer> itself,
+		// which is what made the copy share the element that moves.
+		expect(footer).not.toMatch(/<footer[^>]*style="background-image/);
 	});
 });

@@ -80,7 +80,7 @@ const reportTitleClass = "!text-base !font-extrabold text-brand-dark";
     {/* Why: the grid is an explicit viewport sequence so cards arrive one
         after another instead of the whole grid fading as a single block.
         The soft profile keeps the cascade quiet at four cards. */}
-    <div class="projects-grid" data-motion-sequence="viewport" data-motion-profile="soft" data-scroll-depth="0.05">
+    <div class="projects-grid" data-motion-sequence="viewport" data-motion-profile="soft">
       {items.map((item) => (
         item.summary || item.report ? (
           <details class="project-card__link project-card__expandable group" name="project">
